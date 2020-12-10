@@ -25,7 +25,8 @@ namespace com.baiba.core.lang
         private Dictionary<string, string> language;
         public void Init(string lang)
         {
-            TextAsset ta = AssetLoader.GetAsset<TextAsset>(CONST.RESOURCES.LANG_FOLDER + lang);
+            //TextAsset ta = AssetLoader.GetAsset<TextAsset>(CONST.RESOURCES.LANG_FOLDER + lang);
+            TextAsset ta = Resources.Load<TextAsset>(CONST.RESOURCES.LANG_FOLDER + lang);
             LanguageList langList = JsonUtility.FromJson<LanguageList>(ta.text);
 
             language = new Dictionary<string, string>();

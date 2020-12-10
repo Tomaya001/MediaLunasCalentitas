@@ -9,6 +9,8 @@ namespace com.baiba.core
         public static class TAG
         {
             public static string PLAYER = "Player";
+            public static string OBJETO = "Objeto";
+            public static string PUNTOPARASOLTAR = "PuntoSoltar";
         }
 
         public static class LAYER
