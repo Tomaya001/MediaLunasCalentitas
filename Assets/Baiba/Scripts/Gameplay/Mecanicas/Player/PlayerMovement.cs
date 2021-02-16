@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
-    public float rotationSpeed;
     Transform t;
     public Joystick joystick;
 
@@ -21,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
         if (joystick.Vertical != 0 || joystick.Horizontal !=0)
         {
             t.Translate(Vector3.forward * speed * Time.deltaTime);
+
+            t.Rotate(new Vector3(0, -90, 0));
         }
     }
 }

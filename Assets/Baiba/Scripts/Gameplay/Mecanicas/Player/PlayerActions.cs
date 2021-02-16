@@ -12,7 +12,6 @@ public class PlayerActions : MonoBehaviour
     public static bool canActionPlayer;
     public bool canActionPlayerI;
 
-    protected Collider previusCollider;
 
     private void Start()
     {

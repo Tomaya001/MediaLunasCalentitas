@@ -21,6 +21,7 @@ namespace com.baiba.core
         public static class RESOURCES
         {
             public static string LANG_FOLDER = "lang/";
+            public static string FILES_FOLDER = "files/";
         }
     }
 }
