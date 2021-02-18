@@ -14,11 +14,10 @@ public class EntregaScript : MonoBehaviour
     public Text Lose;
 
     ingListScript orden;
-    bool Winnn;
+    Transform aux;
 
     private void Start()
     {
-        Winnn = true;
         txtPedido.text = null;
         orden = pedidosList[Random.Range(0, pedidosList.Count)];
         for (int i = 0; i < orden.ingList.Count; i++)
@@ -31,32 +30,53 @@ public class EntregaScript : MonoBehaviour
     {
         if (other.CompareTag(CONST.TAG.PLAYER))
         {
-            int aux = 0;
-            for (int i = 0; i < other.transform.childCount ; i++)
+            if(other.gameObject.GetComponentInChildren<Bandeja>())
             {
-                if(other.transform.GetChild(i).GetComponent<GenericObject>())
-                {
-                    if(other.transform.GetChild(i).GetComponent<GenericObject>().id == orden.ingList[aux])
-                    {
-                        aux++;
-                    }
-                    else
-                    {
-                        Winnn = false;
-                        break;
-                    }
-                }
+                aux = other.GetComponentInChildren<Bandeja>().gameObject.transform;
+                ComprobarVictoria(ComprobarOrden(RecorrerBandeja(aux), orden));
             }
-            if (Winnn)
+            
+        }
+    }
+
+    List<string> RecorrerBandeja(Transform t)
+    {
+        List<string> aux = new List<string>();
+        for (int i = 0; i < t.childCount; i++)
+        {
+            if(t.GetChild(i).gameObject.GetComponent<GenericObject>())
+                aux.Add(t.GetChild(i).gameObject.GetComponent<GenericObject>().id);
+        }
+        return aux;
+    }
+
+    bool ComprobarOrden(List<string> bandeja,ingListScript orden)
+    {
+        bool aux = true;
+        for (int i = 0; i < bandeja.Count; i++)
+        {
+            if(bandeja[i] != orden.ingList[i])
             {
-                Debug.Log("YOU ARE WIN");
-                Time.timeScale = 0;
+                aux = false;
+                return aux;
             }
-            else
-            {
-                Debug.Log("YOU LOSE");
-                Time.timeScale = 0;
-            }
+        }
+        return aux;
+    }
+
+    void ComprobarVictoria(bool estado)
+    {
+        if(estado)
+        {
+            Debug.Log("Victoria");
+            new WaitForSeconds(3.0f);
+            SceneManager.LoadScene("Pruebas");
+        }
+        else
+        {
+            Debug.Log("Derrota");
+            new WaitForSeconds(3.0f);
+            SceneManager.LoadScene("Pruebas");
         }
     }
 }

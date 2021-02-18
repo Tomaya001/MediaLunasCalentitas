@@ -10,7 +10,8 @@ namespace com.baiba.core
         {
             public static string PLAYER = "Player";
             public static string OBJETO = "Objeto";
-            public static string PUNTOPARASOLTAR = "PuntoSoltar";
+            public static string BANDEJA = "Bandeja";
+            public static string HAND = "Hand";
         }
 
         public static class LAYER
