@@ -7,16 +7,20 @@ public class TimeBasedComponent : GenericObject
     public float timeA;
     public float timeB;
 
+    private Mesh mesh1;
     public Mesh mesh2;
     public Mesh mesh3;
 
     public bool action;
+
+
 
     private void Start()
     {
         action = false;
         isPickable = false;
         isTrash = false;
+        mesh1 = this.gameObject.GetComponent<MeshFilter>().mesh;
     }
 
     public IEnumerator ActiveAction()
@@ -29,7 +33,7 @@ public class TimeBasedComponent : GenericObject
         yield return new WaitForSeconds(timeB);
         if(this.gameObject.transform.parent)
         {
-            yield return null;
+            StopCoroutine(this.ActiveAction());
         }
         else
         {
@@ -38,5 +42,12 @@ public class TimeBasedComponent : GenericObject
             this.gameObject.GetComponent<MeshCollider>().sharedMesh = mesh3;
         }
         
+    }
+
+    public void ResetMesh(IEnumerator corrutina)
+    {
+        StopCoroutine(corrutina);
+        this.gameObject.GetComponent<MeshFilter>().mesh = mesh1;
+        this.gameObject.GetComponent<MeshCollider>().sharedMesh = mesh1;
     }
 }
