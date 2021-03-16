@@ -69,6 +69,7 @@ public class AmmoBasedComponent : GenericObject
         for (int i = 0; i < ammo * 2; i++)
         {
             pool.Add(Instantiate(prefab));
+            pool[i].gameObject.name = "Municion" + i;
         }
 
         foreach (GameObject g in pool)

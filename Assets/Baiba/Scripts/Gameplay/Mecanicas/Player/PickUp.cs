@@ -10,10 +10,10 @@ public class PickUp : PlayerActions
 
     private Transform thisT;
 
-    private void Start()
+    private void Awake()
     {
         i = 0;
-        thisT = transform;
+        thisT = this.transform;
     }
 
     protected int Pick(Transform[] _points, Transform p, int _i)
@@ -57,18 +57,57 @@ public class PickUp : PlayerActions
         }
         return _i;
     }
-
+    
     public void Limpiar()
     {
-        for (int i = 0; i < this.transform.childCount; i++)
+        int j = 0;
+        while (thisT.childCount != 0 && j <= thisT.childCount)
         {
-            if (this.transform.GetChild(i).GetComponent<GenericObject>())
+            if (thisT.GetChild(j).GetComponent<GenericObject>())
             {
-                this.transform.GetChild(i).SetParent(null);
-                this.transform.GetChild(i).gameObject.SetActive(false);
+                while (thisT.GetChild(j).GetComponent<GenericObject>())
+                {
+                    if (PosicionScript.TransList.ContainsKey(thisT.GetChild(j).gameObject.name))
+                    {
+                        thisT.GetChild(j).transform.position = PosicionScript.TransList[thisT.GetChild(j).gameObject.name];
+                        thisT.GetChild(j).GetComponent<Rigidbody>().detectCollisions = true;
+                        if (thisT.GetChild(j).GetComponent<TimeBasedComponent>())
+                            thisT.GetChild(j).GetComponent<TimeBasedComponent>().ResetMesh(thisT.GetChild(j).GetComponent<TimeBasedComponent>().ActiveAction());
+                        thisT.GetChild(j).SetParent(null);
+                    }
+                    if (thisT.childCount <= j)
+                        break;
+                }                    
             }
+            j++;
         }
+        i = 0;
+
+       /* for (int j = 0; j < this.transform.childCount; j++)
+        {
+            while (this.transform.GetChild(j).GetComponent<GenericObject>())
+            {
+                if (PosicionScript.TransList.ContainsKey(this.transform.GetChild(j).gameObject.name))
+                {
+                    this.transform.GetChild(j).transform.position = PosicionScript.TransList[this.transform.GetChild(j).gameObject.name];
+                }
+                this.transform.GetChild(j).GetComponent<Rigidbody>().detectCollisions = true;
+                this.transform.GetChild(j).SetParent(null);
+            }
+
+            /*if (this.transform.GetChild(j).GetComponent<GenericObject>())
+            {
+                if (PosicionScript.TransList.ContainsKey(this.transform.GetChild(j).gameObject.name))
+                {
+                    this.transform.GetChild(j).transform.position = PosicionScript.TransList[this.transform.GetChild(j).gameObject.name];
+                }
+                this.transform.GetChild(j).GetComponent<Rigidbody>().detectCollisions = true;
+                this.transform.GetChild(j).SetParent(null);
+                //this.transform.GetChild(j).gameObject.SetActive(false);
+            }*/
+        
     }
+
 
     public void ActionPlayer()
     {
