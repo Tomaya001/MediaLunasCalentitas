@@ -9,11 +9,14 @@ public class PickUp : PlayerActions
     protected int i;
 
     private Transform thisT;
+    public Animator animator;
 
     private void Awake()
     {
         i = 0;
         thisT = this.transform;
+        if (!this.gameObject.GetComponent<Bandeja>())
+            animator = this.gameObject.transform.parent.GetComponentInChildren<Animator>();
     }
 
     protected int Pick(Transform[] _points, Transform p, int _i)
@@ -35,7 +38,9 @@ public class PickUp : PlayerActions
             {
                 if (j + 1 >= _points.Length)
                 {
+                    animator.SetBool("Pick",true);
                     t.position = _points[_i].position;
+                    t.rotation = _points[_i].rotation;
                     t.SetParent(p);
                     t.GetComponent<Rigidbody>().detectCollisions = false;
                     _i++;
@@ -55,6 +60,7 @@ public class PickUp : PlayerActions
             p.GetChild(j-1).SetParent(null);
             _i--;
         }
+        animator.SetBool("Pick", false);
         return _i;
     }
     

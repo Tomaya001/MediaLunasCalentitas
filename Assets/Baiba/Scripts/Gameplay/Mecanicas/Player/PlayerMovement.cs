@@ -8,9 +8,12 @@ public class PlayerMovement : MonoBehaviour
     Transform t;
     public Joystick joystick;
 
+    Animator animator;
+
     private void Start()
     {
         t = transform;
+        animator = this.gameObject.GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -22,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
             t.Translate(Vector3.forward * speed * Time.deltaTime);
 
             t.Rotate(new Vector3(0, -90, 0));
+            animator.SetBool("Walk", true);
         }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
+        
     }
 }
