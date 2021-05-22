@@ -24,6 +24,13 @@ namespace com.baiba.core
             public static string LANG_FOLDER = "lang/";
             public static string FILES_FOLDER = "files/";
         }
+
+        public static class SCENES
+        {
+            public static int LOGO = 1;
+            public static int MAINMENU = 2;
+            public static int GAMEPLAY = 3;
+        }
     }
 }
 

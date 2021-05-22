@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Baiba/Scenes/Loading Scene.unity
+    guid: dfa56d4462b133a49aa79443d0969f0e
+  - enabled: 1
+    path: Assets/Baiba/Scenes/MainMenu.unity
+    guid: 725e97fb4109a12489c4280fe61f0165
+  - enabled: 1
     path: Assets/Baiba/Scenes/Pruebas.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
