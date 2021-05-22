@@ -27,9 +27,9 @@ namespace com.baiba.core
 
         public static class SCENES
         {
-            public static int LOGO = 1;
-            public static int MAINMENU = 2;
-            public static int GAMEPLAY = 3;
+            public static string LOGO = "Logo";
+            public static string MAINMENU = "MainMenu";
+            public static string GAMEPLAY = "Pruebas";
         }
     }
 }
