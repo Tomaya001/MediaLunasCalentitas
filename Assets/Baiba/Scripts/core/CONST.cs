@@ -22,14 +22,15 @@ namespace com.baiba.core
         public static class RESOURCES
         {
             public static string LANG_FOLDER = "lang/";
-            public static string FILES_FOLDER = "files/";
+            public static string FILES_FOLDER = "Assets/Baiba/Resources/files/";
+            public static string PREFAB_FOLDER = "prefab/";
         }
 
         public static class SCENES
         {
-            public static int LOGO = 1;
-            public static int MAINMENU = 2;
-            public static int GAMEPLAY = 3;
+            public static string LOGO = "Logo";
+            public static string MAINMENU = "MainMenu";
+            public static string GAMEPLAY = "Pruebas";
         }
     }
 }
