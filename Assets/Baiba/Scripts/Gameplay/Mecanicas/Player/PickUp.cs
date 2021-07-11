@@ -143,6 +143,21 @@ public class PickUp : PlayerActions
                 }
                     
             }
+            /* Preguntamos si es un grupo de objetos que tienen una cantidad finita de objetos, de ser asi comprobamos si esta vacio, de estarlo rellenamos, caso contrario
+               cogemos un objeto*/
+            else if (t.gameObject.GetComponent<SacardelMontonScript>())
+            {
+                if (t.gameObject.GetComponent<SacardelMontonScript>().Sacar() == null)
+                {
+                    t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
+                    return;
+                }
+                else
+                {
+                    t = t.gameObject.GetComponent<SacardelMontonScript>().Sacar();
+                }
+
+            }
             /*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
             de los objetos*/
             if (thisT.GetComponentInChildren<Bandeja>())

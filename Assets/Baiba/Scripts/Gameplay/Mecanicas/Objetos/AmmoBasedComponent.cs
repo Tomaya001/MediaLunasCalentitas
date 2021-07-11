@@ -77,4 +77,19 @@ public class AmmoBasedComponent : GenericObject
             g.gameObject.SetActive(false);
         }
     }
+
+    public virtual void PoolCreator(string nombre)
+    {
+        pool = new List<GameObject>();
+        for (int i = 0; i < ammo * 2; i++)
+        {
+            pool.Add(Instantiate(prefab));
+            pool[i].gameObject.name = nombre + i;
+        }
+
+        foreach (GameObject g in pool)
+        {
+            g.gameObject.SetActive(false);
+        }
+    }
 }
