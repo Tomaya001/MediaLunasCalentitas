@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using com.baiba.core;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     {
         t = transform;
         animator = this.gameObject.GetComponentInChildren<Animator>();
+        joystick = GameObject.FindGameObjectWithTag(CONST.TAG.JOYSTICK).GetComponent<Joystick>();
     }
 
     private void Update()
