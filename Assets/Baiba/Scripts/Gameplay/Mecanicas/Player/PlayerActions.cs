@@ -12,6 +12,8 @@ public class PlayerActions : MonoBehaviour
     public bool enabledCollisonTarget;
     public static bool canActionPlayer;
     public bool canActionPlayerI;
+    public static bool resaltandoI;
+    public bool resaltando;
 
 
     private void Start()
@@ -23,6 +25,7 @@ public class PlayerActions : MonoBehaviour
     {
         tI = t;
         canActionPlayerI = canActionPlayer;
+        resaltandoI = resaltando;
     }
 
     public void OnTriggerStay(Collider other)
@@ -30,6 +33,11 @@ public class PlayerActions : MonoBehaviour
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
             t = other.gameObject.transform;
+            if (t.Find("Resaltador") && !resaltando)
+            {
+                t.Find("Resaltador").gameObject.SetActive(true);
+                resaltando = true;
+            }
             enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
             canActionPlayer = true;
         }
@@ -38,6 +46,7 @@ public class PlayerActions : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         canActionPlayer = false;
+        resaltando = false;
         t = null;
     }
 

@@ -21,6 +21,11 @@ public class TimeBasedComponent : GenericObject
         isPickable = false;
         isTrash = false;
         mesh1 = this.gameObject.GetComponent<MeshFilter>().mesh;
+        if (transform.childCount != 0)
+            GenerarMesh(transform.GetChild(0));
+        else
+            CopiarMesh(this.transform);
+
     }
 
     public IEnumerator ActiveAction()
