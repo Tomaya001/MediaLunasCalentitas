@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: f18b8780a9a158848b6e437a03112f75
+guid: 6bd9a3a4878bf64439a49a74a910e59b
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material #2
-    second: {fileID: 2100000, guid: eaa6b8e8330f6064a91a47f8fd107d9e, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Finishes.Flooring.Wood.Plank.Beech
-    second: {fileID: 2800000, guid: a5eac33dd45fc9c4ca1041b079b42208, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
