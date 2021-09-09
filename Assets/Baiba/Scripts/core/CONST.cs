@@ -13,11 +13,16 @@ namespace com.baiba.core
             public static string BANDEJA = "Bandeja";
             public static string HAND = "Hand";
             public static string JOYSTICK = "Joystick";
+            public static string UI = "UI";
+            public static string MAINCAMERA = "MainCamera";
+            public static string PUNTOENTREGA = "Punto de Entrega";
+            public static string SALIDA = "Salida";
         }
 
         public static class LAYER
         {
             public static int PLAYER = 8;
+            public static int UI = 5;
         }
 
         public static class RESOURCES

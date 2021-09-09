@@ -1,4 +1,5 @@
 ﻿using com.baiba.core;
+using com.baiba.core.objeto;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,18 +146,24 @@ public class PickUp : PlayerActions
             }
             /* Preguntamos si es un grupo de objetos que tienen una cantidad finita de objetos, de ser asi comprobamos si esta vacio, de estarlo rellenamos, caso contrario
                cogemos un objeto*/
-            else if (t.gameObject.GetComponent<SacardelMontonScript>())
+            else if (t.gameObject.GetComponent<HijodelMontonScript>())
+            {                
+                t = t.gameObject.GetComponent<HijodelMontonScript>().Sacar();
+            }
+            else if(t.gameObject.GetComponent<MontonObjects>())
             {
-                if (t.gameObject.GetComponent<SacardelMontonScript>().Sacar() == null)
+                if(t.childCount == 0)
                 {
-                    t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
-                    return;
+                    t.gameObject.GetComponent<MontonObjects>().Rellenar();
                 }
-                else
+            }
+            /* Preguntamos si vamos a interactuar con el punto de entrega */
+            if(entrga)
+            {
+                if(t.gameObject.GetComponent<HijodelMontonScript>())
                 {
-                    t = t.gameObject.GetComponent<SacardelMontonScript>().Sacar();
+                    t.gameObject.GetComponent<HijodelMontonScript>().gameObject.SetActive(false);
                 }
-
             }
             /*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
             de los objetos*/

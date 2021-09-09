@@ -1,4 +1,5 @@
 ﻿using com.baiba.core;
+using com.baiba.core.objeto;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,17 @@ public class PlayerActions : MonoBehaviour
     public bool enabledCollisonTarget;
     public static bool canActionPlayer;
     public bool canActionPlayerI;
-    public static bool resaltandoI;
-    public bool resaltando;
+    public static bool resaltando;
+    public bool resaltandoI;
+    public static bool entrga;
+    public bool entregaI;
 
+
+    private Transform myT;
 
     private void Start()
     {
+        myT = this.transform;
         canActionPlayer = false;
     }
 
@@ -26,6 +32,7 @@ public class PlayerActions : MonoBehaviour
         tI = t;
         canActionPlayerI = canActionPlayer;
         resaltandoI = resaltando;
+        entregaI = entrga;
     }
 
     public void OnTriggerStay(Collider other)
@@ -41,11 +48,21 @@ public class PlayerActions : MonoBehaviour
             enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
             canActionPlayer = true;
         }
+        else if (other.gameObject.CompareTag(CONST.TAG.PUNTOENTREGA))
+        {
+            if (myT.GetComponentInChildren<HijodelMontonScript>())
+            {
+                t = myT.GetComponentInChildren<HijodelMontonScript>().transform;
+                canActionPlayer = true;
+                entrga = true;
+            }
+        }
     }
     
     public void OnTriggerExit(Collider other)
     {
         canActionPlayer = false;
+        entrga = false;
         resaltando = false;
         t = null;
     }
