@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c83fa7befd49b4fbd48571c4f41b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
+  isPickable: 0
+  isTrash: 0
 --- !u!65 &1311545716145340979
 BoxCollider:
   m_ObjectHideFlags: 0
