@@ -15,7 +15,7 @@ public class PlayerActions : MonoBehaviour
     public bool canActionPlayerI;
     public static bool resaltando;
     public bool resaltandoI;
-    public static bool entrga;
+    public static bool entrega;
     public bool entregaI;
 
 
@@ -32,7 +32,7 @@ public class PlayerActions : MonoBehaviour
         tI = t;
         canActionPlayerI = canActionPlayer;
         resaltandoI = resaltando;
-        entregaI = entrga;
+        entregaI = entrega;
     }
 
     public void OnTriggerStay(Collider other)
@@ -50,19 +50,17 @@ public class PlayerActions : MonoBehaviour
         }
         else if (other.gameObject.CompareTag(CONST.TAG.PUNTOENTREGA))
         {
-            if (myT.GetComponentInChildren<HijodelMontonScript>())
-            {
-                t = myT.GetComponentInChildren<HijodelMontonScript>().transform;
-                canActionPlayer = true;
-                entrga = true;
-            }
+            t = other.gameObject.transform;
+            canActionPlayer = false;
+            entrega = true;
+
         }
     }
     
     public void OnTriggerExit(Collider other)
     {
         canActionPlayer = false;
-        entrga = false;
+        entrega = false;
         resaltando = false;
         t = null;
     }

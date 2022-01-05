@@ -158,13 +158,7 @@ public class PickUp : PlayerActions
                 }
             }
             /* Preguntamos si vamos a interactuar con el punto de entrega */
-            if(entrga)
-            {
-                if(t.gameObject.GetComponent<HijodelMontonScript>())
-                {
-                    t.gameObject.GetComponent<HijodelMontonScript>().gameObject.SetActive(false);
-                }
-            }
+            
             /*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
             de los objetos*/
             if (thisT.GetComponentInChildren<Bandeja>())
@@ -178,6 +172,17 @@ public class PickUp : PlayerActions
             /*De no tener la bandeja le pasamos los datos de la mano del player*/
             else
                 i = Pick(points, thisT, i);
+        }
+        else if (entrega)
+        {
+            if (t.GetComponent<PuntoEntregaScript>().Comprobar(thisT))
+            {
+                Debug.Log("Orden Correcta");
+            }
+            else
+            {
+                Debug.Log("Orden Erronea");
+            }
         }
         //De no poder realizar accion, en realidad es que no puede agarar porque no esta en contacto con otro objeto, por lo cual si tiene algun objeto el player lo puede soltar
         else if (thisT.childCount != 0)
