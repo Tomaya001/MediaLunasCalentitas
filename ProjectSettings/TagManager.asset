@@ -8,6 +8,9 @@ TagManager:
   - Hand
   - Bandeja
   - Joystick
+  - Cliente
+  - Punto Desaparicion
+  - Piso
   layers:
   - Default
   - TransparentFX

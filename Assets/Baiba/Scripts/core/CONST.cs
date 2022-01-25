@@ -13,6 +13,10 @@ namespace com.baiba.core
             public static string BANDEJA = "Bandeja";
             public static string HAND = "Hand";
             public static string JOYSTICK = "Joystick";
+            public static string CLIENTE = "Cliente";
+            public static string PUNTODESAPARICION = "Punto Desaparicion";
+            public static string CAFETERASLOT1 = "CafeteraSlot1";
+            public static string CAFETERASLOT2 = "CafeteraSlot2";
         }
 
         public static class LAYER
