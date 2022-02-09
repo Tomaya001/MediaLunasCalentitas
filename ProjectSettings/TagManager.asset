@@ -11,6 +11,7 @@ TagManager:
   - Cliente
   - Punto Desaparicion
   - Piso
+  - CajaRegistradora
   layers:
   - Default
   - TransparentFX

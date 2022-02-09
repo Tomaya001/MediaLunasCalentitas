@@ -45,6 +45,11 @@ public class EntregaScript : MonoBehaviour
                 aux = other.GetComponentInChildren<Bandeja>().gameObject.transform;
                 ComprobarVictoria(ComprobarOrden(RecorrerBandeja(aux), orden));
             }
+            else if (other.gameObject.GetComponentInChildren<PickUp>())
+            {
+                aux = other.GetComponentInChildren<PickUp>().gameObject.transform;
+                ComprobarVictoria(ComprobarOrden(RecorrerBandeja(aux), orden));
+            }
             
         }
     }
