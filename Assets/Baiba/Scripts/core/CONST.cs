@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace com.baiba.core
 {
-    public class CONST : MonoBehaviour
+    public class CONST
     {
         public static class TAG
         {
@@ -17,6 +17,8 @@ namespace com.baiba.core
             public static string PUNTODESAPARICION = "Punto Desaparicion";
             public static string CAFETERASLOT1 = "CafeteraSlot1";
             public static string CAFETERASLOT2 = "CafeteraSlot2";
+            public static string CANVASPRINCIPAL = "Canvas Principal";
+            public static string CANVASORDENES = "Canvas Ordenes";
         }
 
         public static class LAYER
@@ -27,7 +29,7 @@ namespace com.baiba.core
         public static class RESOURCES
         {
             public static string LANG_FOLDER = "lang/";
-            public static string FILES_FOLDER = "Assets/Baiba/Resources/files/";
+            public static string FILES_FOLDER = "files/";
             public static string PREFAB_FOLDER = "prefab/";
         }
 

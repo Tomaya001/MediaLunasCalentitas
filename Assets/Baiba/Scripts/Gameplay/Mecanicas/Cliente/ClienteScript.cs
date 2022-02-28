@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace com.baiba.cliente
 {
+    using com.baiba.GameManager;
     public class ClienteScript: MonoBehaviour
     {
         public float velocidad;
@@ -18,6 +19,7 @@ namespace com.baiba.cliente
 
         private Transform destino;
         private Animator animator;
+        private Orden orden;
 
 
         Transform t;
@@ -30,9 +32,10 @@ namespace com.baiba.cliente
         }
 
         private void Start()
-        {
+        {   orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length - 1)];
+            GameManager.ListaOrdenes.Add(this.gameObject,orden);
+            tiempoEspera = orden.tiempo;            
             StartCoroutine(PedirOrden());
-
         }
 
         private void Update()
@@ -59,6 +62,7 @@ namespace com.baiba.cliente
             }
             else
             {
+                GameManager.MostrarOrden(this.gameObject);
                 animator.SetBool("Walk", false);
                 destino = punto2;
                 temporizador.gameObject.SetActive(true);
