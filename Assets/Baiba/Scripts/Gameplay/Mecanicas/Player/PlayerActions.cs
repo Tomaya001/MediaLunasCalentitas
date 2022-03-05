@@ -1,4 +1,5 @@
 ﻿using com.baiba.core;
+using com.baiba.GameManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class PlayerActions : MonoBehaviour
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
             other.gameObject.GetComponent<Outline>().enabled = true;
+            
         }
     }
 
@@ -40,6 +42,7 @@ public class PlayerActions : MonoBehaviour
             t = other.gameObject.transform;
             enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
             canActionPlayer = true;
+            GameManager.TextoBoton.GetComponent<Text>().text = other.gameObject.GetComponent<GenericObject>().id;
         }
     }
     
@@ -51,6 +54,7 @@ public class PlayerActions : MonoBehaviour
         }
         canActionPlayer = false;
         t = null;
+        GameManager.TextoBoton.GetComponent<Text>().text =  "";
     }
 
 }

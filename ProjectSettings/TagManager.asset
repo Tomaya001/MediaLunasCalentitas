@@ -14,6 +14,7 @@ TagManager:
   - CajaRegistradora
   - Canvas Principal
   - Canvas Ordenes
+  - TextoBoton
   layers:
   - Default
   - TransparentFX

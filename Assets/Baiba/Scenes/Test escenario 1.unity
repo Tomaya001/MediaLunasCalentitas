@@ -869,6 +869,21 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &152914684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152914677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508db89700da2374b8d4b6a66eaa8105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Caja Registradora
+  isPickable: 0
+  isTrash: 0
 --- !u!1001 &172191678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,6 +1242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118267935874870980, guid: d07c2db043a16ec449f2e3dd973d8aff,
+        type: 3}
+      propertyPath: m_TagString
+      value: TextoBoton
       objectReference: {fileID: 0}
     - target: {fileID: 8118267936136394624, guid: d07c2db043a16ec449f2e3dd973d8aff,
         type: 3}
@@ -3077,6 +3097,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50c3eed30f0af414080637ab56945e35, type: 3}
+--- !u!1 &457088475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6901280464228022688, guid: e0dc84ca802fb364684d9be360d3a99d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542345678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &457088481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457088475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508db89700da2374b8d4b6a66eaa8105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Cafetera Slot 2
+  isPickable: 0
+  isTrash: 0
 --- !u!1 &457089005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3828,6 +3869,27 @@ Transform:
   m_Father: {fileID: 425129475}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &561836724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7128882866767872394, guid: e0dc84ca802fb364684d9be360d3a99d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542345678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &561836730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561836724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508db89700da2374b8d4b6a66eaa8105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Cafetera Slot 1
+  isPickable: 0
+  isTrash: 0
 --- !u!1001 &584943372
 PrefabInstance:
   m_ObjectHideFlags: 0
