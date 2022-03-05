@@ -50,7 +50,6 @@ namespace com.baiba.GameManager
             lang.Init("es");
             nivelJuego = NivelJuego;
             CargarNivel();
-            textoBoton = GameObject.FindGameObjectWithTag(CONST.TAG.TEXTOBOTON);
         }
         //Fin Instanciamiento Estatico
 
@@ -108,12 +107,7 @@ namespace com.baiba.GameManager
             get { return ordenesCountLevel; }
             set { ordenesCountLevel = value; }
         }
-        private static GameObject textoBoton;
-        public static GameObject TextoBoton
-        {
-            get { return textoBoton; }
-            set { textoBoton = value; }
-        }
+
 
         public static List<Text> UIOrdenes = new List<Text>();
       /*-----------------------------------*/  

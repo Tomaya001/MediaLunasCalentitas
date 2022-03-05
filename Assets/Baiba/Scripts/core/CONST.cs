@@ -19,7 +19,6 @@ namespace com.baiba.core
             public static string CAFETERASLOT2 = "CafeteraSlot2";
             public static string CANVASPRINCIPAL = "Canvas Principal";
             public static string CANVASORDENES = "Canvas Ordenes";
-            public static string TEXTOBOTON = "TextoBoton";
         }
 
         public static class LAYER
