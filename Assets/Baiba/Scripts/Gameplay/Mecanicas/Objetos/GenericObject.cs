@@ -19,16 +19,24 @@ public class GenericObject : MonoBehaviour
         }
         else
         {
-            animator.enabled = false;
+            animator = null;
+        }
+        if(gameObject.GetComponent<Outline>())
+        {
+            gameObject.GetComponent<Outline>().enabled = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Piso"))
+        if(id == "Taza")
         {
-            isTrash = true;
-            animator.SetBool("Trash", true);
+            if (collision.gameObject.CompareTag("Piso"))
+            {
+                isTrash = true;
+                animator.SetBool("Trash", true);
+            }
         }
+        
     }
 }

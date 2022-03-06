@@ -163,16 +163,24 @@ public class PickUp : PlayerActions
                 }
 
             }
-            /*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
+            /*------Cambiar Descrip*//*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
             de los objetos*/
             else if (thisT.GetComponentInChildren<Bandeja>())
             {
-                if(thisT.GetComponentInChildren<Bandeja>().points.Length > thisT.GetComponentInChildren<Bandeja>().i)
+                if (t.gameObject.GetComponent<GenericObject>())
                 {
-                    thisT.GetComponentInChildren<Bandeja>().i = Pick(thisT.GetComponentInChildren<Bandeja>().points, thisT.GetComponentInChildren<Bandeja>().transform, 
-                        thisT.GetComponentInChildren<Bandeja>().i);
+                    if (thisT.GetComponentInChildren<Bandeja>().points.Length > thisT.GetComponentInChildren<Bandeja>().i)
+                    {
+                        thisT.GetComponentInChildren<Bandeja>().i = Pick(thisT.GetComponentInChildren<Bandeja>().points, thisT.GetComponentInChildren<Bandeja>().transform,
+                            thisT.GetComponentInChildren<Bandeja>().i);
+                    }
                 }
-            }/*Preguntamos si el personaje tiene una taza en la mano, de ser asi procedemos a preguntar si interactuamos con la cafetera*/
+                else if(t.gameObject.GetComponent<EntregaScript>())
+                {
+                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
+                }
+                
+            }/*------Cambiar Descrip*//*Preguntamos si el personaje tiene una taza en la mano, de ser asi procedemos a preguntar si interactuamos con la cafetera*/
             else if(thisT.childCount != 0)
             {
                 if (thisT.GetChild(0).GetComponent<GenericObject>().id == "Taza")
@@ -183,20 +191,28 @@ public class PickUp : PlayerActions
                         animator.SetBool("Pick", false);
                     }
                 }
+                /*Preguntamos si estamos frente a la caja, de ser asi habilitamos la opcion de entregar la orden*/
+                else if (t.gameObject.GetComponent<EntregaScript>())
+                {                   
+                    if (thisT.GetChild(0).GetComponent<GenericObject>())
+                    {
+                        t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
+                    }
+                }
             }
-            /*----------------AQUI----------------------------------------------*/
+            /*Preguntamos si estamos frente a la cafetera y si tiene una taza lista, en ese caso la tomamos de nuevo*/
             else if (t.gameObject.GetComponent<CafeteraScripts>())
             {
                 bool action = t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT);
                 if (action)
                 animator.SetBool("Pick", true);
             }
+
             /*De no tener la bandeja le pasamos los datos de la mano del player*/
             else if(t.gameObject.GetComponent<GenericObject>())
             {
                 i = Pick(points, thisT, i);
-            }
-                
+            }                
         }
         //De no poder realizar accion, en realidad es que no puede agarar porque no esta en contacto con otro objeto, por lo cual si tiene algun objeto el player lo puede soltar
         else if (thisT.childCount != 0)

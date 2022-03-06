@@ -25,6 +25,14 @@ public class PlayerActions : MonoBehaviour
         canActionPlayerI = canActionPlayer;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
+        {
+            other.gameObject.GetComponent<Outline>().enabled = true;
+        }
+    }
+
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
@@ -37,6 +45,10 @@ public class PlayerActions : MonoBehaviour
     
     public void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
+        {
+            other.gameObject.GetComponent<Outline>().enabled = false;
+        }
         canActionPlayer = false;
         t = null;
     }

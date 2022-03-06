@@ -11,6 +11,9 @@ TagManager:
   - Cliente
   - Punto Desaparicion
   - Piso
+  - CajaRegistradora
+  - Canvas Principal
+  - Canvas Ordenes
   layers:
   - Default
   - TransparentFX

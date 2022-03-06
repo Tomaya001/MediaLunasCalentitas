@@ -5,113 +5,169 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System;
 
 public class EntregaScript : MonoBehaviour
 {
-    public List<ingListScript> pedidosList;
-    public Text txtPedido;
-    public int ordenesForNextLevel;
 
-    public Text Win;
-    public Text Lose;
 
-    ingListScript orden;
-    List<ingListScript> ordenesEntregadas;
-    Transform aux;
+    private Level level;
 
     private void Awake()
     {
-        if(GameManager.OrdenesCountLevel - 1 <= 0)
-            GameManager.OrdenesCountLevel = ordenesForNextLevel;
+        
     }
 
     private void Start()
     {
-        txtPedido.text = null;
-        ordenesEntregadas = new List<ingListScript>();
-        randomOrden();
-        for (int i = 0; i < orden.ingList.Count; i++)
-        {
-            txtPedido.text += orden.ingList[i] + "\n";
-        }
+        GameManager.CargarUIPrincipal();
+        
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ComprobarOrden(Transform t)
     {
-        if (other.CompareTag(CONST.TAG.PLAYER))
+        bool incorrecto = false;
+        if(t.childCount == 0)
         {
-            if(other.gameObject.GetComponentInChildren<Bandeja>())
+            foreach (Orden o in GameManager.ListaOrdenes.Values)
             {
-                aux = other.GetComponentInChildren<Bandeja>().gameObject.transform;
-                ComprobarVictoria(ComprobarOrden(RecorrerBandeja(aux), orden));
+                if (o.ingredientes.Length == 1)
+                {
+                    if (t.gameObject.GetComponent<GenericObject>().id == o.ingredientes[0].nombre)
+                    {
+                        t.SetParent(null);
+                        t.gameObject.SetActive(false);
+                        Debug.Log("Correcto");
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.Log("No hay ninguna orden con un solo Ingrediente");
+                }                    
             }
-            
+            incorrecto = true;
         }
-    }
+        else if(t.childCount > 0)
+        {
+            List<string> aux = new List<string>();
 
-    List<string> RecorrerBandeja(Transform t)
-    {
-        List<string> aux = new List<string>();
-        for (int i = 0; i < t.childCount; i++)
-        {
-            if(t.GetChild(i).gameObject.GetComponent<GenericObject>())
-                aux.Add(t.GetChild(i).gameObject.GetComponent<GenericObject>().id);
-        }
-        return aux;
-    }
-
-    bool ComprobarOrden(List<string> bandeja,ingListScript orden)
-    {
-        bool aux = true;
-        if(bandeja.Count != orden.ingList.Count)
-        {
-            aux = false;
-            return aux;
-        }
-        for (int i = 0; i < bandeja.Count; i++)
-        {
-            if(bandeja[i] != orden.ingList[i])
+            for (int i = 0; i < t.childCount; i++)
             {
-                aux = false;
-                return aux;
+                if (t.GetChild(i).GetComponent<GenericObject>())
+                    aux.Add(t.GetChild(i).gameObject.GetComponent<GenericObject>().id);
             }
+
+            foreach (Orden o in GameManager.ListaOrdenes.Values)
+            {
+                if (aux.Count == o.ingredientes.Length)
+                {
+                    int i = 0;
+                    bool correcto = true;
+                    while (i < o.ingredientes.Length)
+                    {
+                        if (aux[i] == o.ingredientes[i].nombre)
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            correcto = false;
+                            break;
+                        }
+                    }
+
+                    if (correcto)
+                    {
+                        t.SetParent(null);
+                        t.gameObject.SetActive(false);
+                        Debug.Log("Correcto");
+                        return;
+                    }
+                }
+            }
+            incorrecto = true;
         }
-        return aux;
+
+        if(incorrecto)
+        {
+            Debug.Log("Orden Erronea");
+        }        
     }
 
-    void ComprobarVictoria(bool estado)
+
+
+
+    private void CrearJson()
     {
-        if(estado)
-        {
-            if (GameManager.OrdenesCountLevel > 0)
-            {
-                ordenesEntregadas.Add(orden);
-                randomOrden();
-                GameManager.OrdenesCountLevel--;
-                SceneManager.LoadScene("Pruebas");
-            }
-            else
-            {
-                Debug.Log("Victoria");
-                new WaitForSeconds(3.0f);
-                SceneManager.LoadScene("Pruebas");
-            }
-            
-        }
-        else
-        {
-            Debug.Log("Derrota");
-            new WaitForSeconds(3.0f);
-            SceneManager.LoadScene("Pruebas");
-        }
+        Orden orden1 = new Orden();
+        Orden orden2 = new Orden();
+        Orden orden3 = new Orden();
+
+        Ingrediente ing1 = new Ingrediente(1);
+        Ingrediente ing2 = new Ingrediente(2);
+        Ingrediente ing3 = new Ingrediente(3);
+
+        orden1.ingredientes = new Ingrediente[3];
+        orden1.ingredientes[0] = ing1;
+        orden1.ingredientes[1] = ing2;
+        orden1.ingredientes[2] = ing3;
+        orden1.tiempo = 10f;
+
+        orden2.ingredientes = new Ingrediente[3];
+        orden2.ingredientes[0] = ing1;
+        orden2.ingredientes[1] = ing2;
+        orden2.ingredientes[2] = ing3;
+        orden2.tiempo = 10f;
+
+        orden3.ingredientes = new Ingrediente[3];
+        orden3.ingredientes[0] = ing1;
+        orden3.ingredientes[1] = ing2;
+        orden3.ingredientes[2] = ing3;
+        orden3.tiempo = 10f;
+
+        Level level1 = new Level();
+        Level level2 = new Level();
+
+        level1.ordenes = new Orden[3];
+        level1.ordenes[0] = orden1;
+        level1.ordenes[1] = orden2;
+        level1.ordenes[2] = orden3;
+
+        level2.ordenes = new Orden[3];
+        level2.ordenes[0] = orden1;
+        level2.ordenes[1] = orden2;
+        level2.ordenes[2] = orden3;
+
+        string aux = JsonUtility.ToJson(level1);
+        Debug.Log(aux);
     }
 
-    void randomOrden()
+}
+
+[Serializable]
+public class Level
+{
+    public Orden[] ordenes;
+}
+
+[Serializable]
+public class Orden
+{
+    public float tiempo;
+    public Ingrediente[] ingredientes;
+}
+
+[Serializable]
+public class Ingrediente
+{
+    public string nombre;
+    public float tiempo;
+
+    public Ingrediente(int i)
     {
-        orden = pedidosList[Random.Range(0, pedidosList.Count)];
-        while (ordenesEntregadas.Contains(orden))
-        {
-            orden = pedidosList[Random.Range(0, pedidosList.Count)];
-        }
+        nombre = i.ToString();
+        tiempo = 1.0f;
     }
 }

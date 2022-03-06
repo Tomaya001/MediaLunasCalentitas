@@ -153,7 +153,6 @@ GameObject:
   - component: {fileID: 6755996449756165783}
   - component: {fileID: 6755996449756165780}
   - component: {fileID: 6755996449756165781}
-  - component: {fileID: 3546199518908033756}
   m_Layer: 0
   m_Name: Bandeja
   m_TagString: Objeto
@@ -259,20 +258,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   inUse: 0
   canbeReleased: 0
---- !u!114 &3546199518908033756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6755996449756165768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6d369f5c547e348a2e4cb3c57e1166, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 6755996449756165768}
-  nombre: 
 --- !u!1 &6755996450010168689
 GameObject:
   m_ObjectHideFlags: 0
