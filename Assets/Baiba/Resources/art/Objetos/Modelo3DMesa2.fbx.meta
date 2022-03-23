@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Finishes.Flooring.Wood.Plank.Beech
-    second: {fileID: 2800000, guid: a5eac33dd45fc9c4ca1041b079b42208, type: 3}
+    second: {fileID: 2800000, guid: af0f5833ae5a7004888f16e255279f33, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
