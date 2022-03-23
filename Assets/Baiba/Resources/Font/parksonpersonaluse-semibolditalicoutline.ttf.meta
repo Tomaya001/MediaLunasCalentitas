@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d1c1c5312938bc446b672532da1232f3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Parkson PERSONAL USE
+  fontNames:
+  - Parkson PERSONAL USE
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f078d53ca3fa3b744a4a89f4fa833cf9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
