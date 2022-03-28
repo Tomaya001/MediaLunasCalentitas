@@ -13,6 +13,8 @@ namespace com.baiba.GameManager
         //Declaracion de Variables Publicas
         public string NivelJuego;
         private static string nivelJuego;
+        public int maxOrdenesPerdidas;
+        private int MaxOrdenesPerdidas;
 
         //Instanciamiento Estatico
         private static GameManager _instance;
@@ -49,6 +51,8 @@ namespace com.baiba.GameManager
             Language lang = Language.instance;
             lang.Init("es");
             nivelJuego = NivelJuego;
+            MaxOrdenesPerdidas = maxOrdenesPerdidas;
+            Time.timeScale = 1;
             CargarNivel();
         }
         //Fin Instanciamiento Estatico
@@ -62,6 +66,13 @@ namespace com.baiba.GameManager
         private void Update()
         {
             aux = UIOrdenes;
+
+            if(ordenesPerdidas >= MaxOrdenesPerdidas)
+            {
+                Time.timeScale = 0f;
+                UnityEngine.SceneManagement.SceneManager.LoadScene(CONST.SCENES.LOSE);
+                ordenesPerdidas = 0;
+            }
         
         }
 
@@ -107,6 +118,21 @@ namespace com.baiba.GameManager
             get { return ordenesCountLevel; }
             set { ordenesCountLevel = value; }
         }
+
+        private static int ordenesCorrectas;
+        public static int OrdenesCorrectas
+        {
+            get { return ordenesCorrectas; }
+            set { ordenesCorrectas = value; }
+        }
+
+        private static int ordenesPerdidas;
+        public static int OrdenesPerdidas
+        {
+            get { return OrdenesPerdidas; }
+            set { ordenesPerdidas = value; }
+        }
+
 
 
         public static List<Text> UIOrdenes = new List<Text>();

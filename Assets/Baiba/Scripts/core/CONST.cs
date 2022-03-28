@@ -8,6 +8,7 @@ namespace com.baiba.core
     {
         public static class TAG
         {
+            public static string UNTAGGED = "Untagged";
             public static string PLAYER = "Player";
             public static string OBJETO = "Objeto";
             public static string BANDEJA = "Bandeja";
@@ -19,6 +20,7 @@ namespace com.baiba.core
             public static string CAFETERASLOT2 = "CafeteraSlot2";
             public static string CANVASPRINCIPAL = "Canvas Principal";
             public static string CANVASORDENES = "Canvas Ordenes";
+            public static string INSTANCIADO = "Instanciado";
         }
 
         public static class LAYER
@@ -38,6 +40,8 @@ namespace com.baiba.core
             public static string LOGO = "Logo";
             public static string MAINMENU = "MainMenu";
             public static string GAMEPLAY = "Pruebas";
+            public static string LOSE = "YouLose";
+            public static string WIN = "YouWin";
         }
     }
 }

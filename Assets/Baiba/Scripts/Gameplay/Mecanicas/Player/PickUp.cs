@@ -11,6 +11,8 @@ public class PickUp : PlayerActions
     private Transform thisT;
     public Animator animator;
 
+    public string[] ids;
+
     private void Awake()
     {
         i = 0;
@@ -40,11 +42,14 @@ public class PickUp : PlayerActions
                 {
                     animator.SetBool("Pick",true);
                     t.position = _points[_i].position;
+                    if(t.GetComponent<Bandeja>())
+                        t.rotation = _points[_i].rotation;
                     t.SetParent(p);
                     t.GetComponent<Collider>().enabled = false;
                     t.GetComponent<Rigidbody>().detectCollisions = false;
                     t.GetComponent<Rigidbody>().useGravity = false;
                     t.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                    t.GetComponent<Outline>().enabled = false;
                     _i++;
                     break;
                 }
@@ -159,10 +164,18 @@ public class PickUp : PlayerActions
                 }
                 else
                 {
-                    t = t.gameObject.GetComponent<SacardelMontonScript>().Sacar();
+                    Pick(points, t.gameObject.GetComponent<SacardelMontonScript>().Sacar(), i);
                 }
 
             }
+
+            else if (t.gameObject.GetComponent<SacarPorcionScript>())
+            {
+                t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT);
+                animator.SetBool("Pick", true);
+                //Pick(points, t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(), i);
+            }
+
             /*------Cambiar Descrip*//*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
             de los objetos*/
             else if (thisT.GetComponentInChildren<Bandeja>())

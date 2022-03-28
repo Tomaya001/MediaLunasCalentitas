@@ -47,6 +47,8 @@ namespace com.baiba.cliente
         {
             if (collision.gameObject.CompareTag(CONST.TAG.PUNTODESAPARICION))
             {
+                StopCoroutine(PedirOrden());
+                GameManager.OrdenesPerdidas = +1;
                 this.gameObject.SetActive(false);
             }
         }

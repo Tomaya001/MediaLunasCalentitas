@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using com.baiba.core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ public class SacardelMontonScript : GenericObject
             {
                 objects.Add(this.transform.GetChild(i).gameObject);
                 possBases.Add(this.transform.GetChild(i));
+                transform.GetChild(i).gameObject.tag = CONST.TAG.UNTAGGED;
             }
         }
 
@@ -54,7 +56,8 @@ public class SacardelMontonScript : GenericObject
             {
                 if (transform.GetChild(i).GetComponent<GenericObject>())
                 {
-                    //transform.GetChild(i).gameObject.tag = CONST.TAG.OBJETO;
+                    transform.GetChild(i).gameObject.tag = CONST.TAG.OBJETO;
+                    //transform.gameObject.GetComponent<MeshCollider>().enabled = false;
                     _t = transform.GetChild(i).transform;
                     return _t;
                 }
@@ -67,4 +70,17 @@ public class SacardelMontonScript : GenericObject
     {
         
     }
+
+    public void ResaltarTaza(bool resaltar)
+    {
+        if(transform.childCount != 0)
+        {
+            if (resaltar)
+                transform.GetChild(0).gameObject.GetComponent<Outline>().enabled = true;
+            else
+                transform.GetChild(0).gameObject.GetComponent<Outline>().enabled = false;
+        }
+    }
+
+
 }

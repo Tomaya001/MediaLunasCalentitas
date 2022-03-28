@@ -29,7 +29,10 @@ public class PlayerActions : MonoBehaviour
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            other.gameObject.GetComponent<Outline>().enabled = true;
+            if (other.gameObject.GetComponent<SacardelMontonScript>())
+                other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(true);
+            else
+                other.gameObject.GetComponent<Outline>().enabled = true;
         }
     }
 
@@ -47,7 +50,10 @@ public class PlayerActions : MonoBehaviour
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            other.gameObject.GetComponent<Outline>().enabled = false;
+            if (other.gameObject.GetComponent<SacardelMontonScript>())
+                other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(false);
+            else
+                other.gameObject.GetComponent<Outline>().enabled = false;
         }
         canActionPlayer = false;
         t = null;

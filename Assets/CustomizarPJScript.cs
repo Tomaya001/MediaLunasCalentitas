@@ -51,4 +51,10 @@ public class CustomizarPJScript : MonoBehaviour
             g.gameObject.GetComponent<Renderer>().material.color = colors[i];
         }
     }
+
+    public void AplicarSkin()
+    {
+        PlayerPrefs.SetString("colorSkin", piel[0].gameObject.GetComponent<Renderer>().material.color.ToString());
+        PlayerPrefs.Save();
+    }
 }

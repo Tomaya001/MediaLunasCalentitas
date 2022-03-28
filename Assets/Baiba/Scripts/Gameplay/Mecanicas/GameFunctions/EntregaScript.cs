@@ -39,6 +39,7 @@ public class EntregaScript : MonoBehaviour
                         t.SetParent(null);
                         t.gameObject.SetActive(false);
                         Debug.Log("Correcto");
+                        GameManager.OrdenesCorrectas = +1;
                         return;
                     }
                 }
