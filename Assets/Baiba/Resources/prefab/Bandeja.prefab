@@ -259,6 +259,7 @@ MonoBehaviour:
   - {fileID: 6755996450010168688}
   - {fileID: 6755996448667366617}
   animator: {fileID: 0}
+  ids: []
   inUse: 0
   canbeReleased: 0
 --- !u!114 &1776157614687960478

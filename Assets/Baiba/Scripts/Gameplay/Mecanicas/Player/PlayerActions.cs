@@ -25,14 +25,35 @@ public class PlayerActions : MonoBehaviour
         canActionPlayerI = canActionPlayer;
     }
 
+    private void EstadoOutline(Collider other, bool estado)
+    {
+        try
+        {
+            if (other.gameObject.GetComponent<SacardelMontonScript>())
+            {
+                other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(estado);
+            }
+            if (other.gameObject.GetComponent<Outline>())
+            {
+                other.gameObject.GetComponent<Outline>().enabled = estado;
+            }
+            if (other.gameObject.GetComponentInParent<Outline>())
+            {
+                other.transform.parent.gameObject.GetComponent<Outline>().enabled = estado;
+            }
+        }
+        catch
+        {
+            
+        }
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            if (other.gameObject.GetComponent<SacardelMontonScript>())
-                other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(true);
-            else
-                other.gameObject.GetComponent<Outline>().enabled = true;
+            EstadoOutline(other, true);
         }
     }
 
@@ -50,10 +71,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            if (other.gameObject.GetComponent<SacardelMontonScript>())
-                other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(false);
-            else
-                other.gameObject.GetComponent<Outline>().enabled = false;
+            EstadoOutline(other, false);
         }
         canActionPlayer = false;
         t = null;

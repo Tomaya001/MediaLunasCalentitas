@@ -130,108 +130,97 @@ public class PickUp : PlayerActions
         //Preguntamos si el jugador puede realizar una accion que se activa cuando el jugador esta colisionando con algun trigger
         if (canActionPlayer)
         {
-            //Preguntamos si es un objeto que tenga que preparase primero, de ser asi activamos la corrutina para que el objeto se prepare
-            if(t.gameObject.GetComponent<TimeBasedComponent>())
+            if (t.gameObject.GetComponent<SacarPorcionScript>())
             {
-                 if(!t.gameObject.GetComponent<TimeBasedComponent>().action)
+                if (thisT.gameObject.GetComponentInChildren<Bandeja>())
                 {
-                    t.gameObject.GetComponent<TimeBasedComponent>().action = true;
-                    StartCoroutine(t.gameObject.GetComponent<TimeBasedComponent>().ActiveAction());
-                }
-            }
-            //Preguntamos si es un objeto con una cantida finita de municion, de ser asi comprobamos si esta vacio, en tal caso lo rellenamos
-            else if(t.gameObject.GetComponent<AmmoBasedComponent>())
-            {
-                if (t.gameObject.GetComponent<AmmoBasedComponent>().Sacar() == null)
-                {
-                    t.gameObject.GetComponent<AmmoBasedComponent>().Rellenar();
-                    return;
-                }
+                    if(thisT.GetChild(0).gameObject.GetComponent<Bandeja>().points.Length > thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i)
+                    {
+                        t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(
+                            thisT.GetChild(0).GetComponent<Bandeja>().points[
+                                thisT.GetChild(0).GetComponent<Bandeja>().i],true);
+                        thisT.GetChild(0).GetComponent<Bandeja>().i++;
+                    }                        
+                    else
+                    {
+                        Debug.Log("Bandeja Llena");
+                    }
+                }                              
                 else
                 {
-                    t = t.gameObject.GetComponent<AmmoBasedComponent>().Sacar();
+                    animator.SetBool("Pick", true);
+                    t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT,false);
                 }
                     
             }
-            /* Preguntamos si es un grupo de objetos que tienen una cantidad finita de objetos, de ser asi comprobamos si esta vacio, de estarlo rellenamos, caso contrario
-               cogemos un objeto*/
-            else if (t.gameObject.GetComponent<SacardelMontonScript>())
+
+            else if (t.gameObject.GetComponent<CafeteraScripts>())
             {
-                if (t.gameObject.GetComponent<SacardelMontonScript>().Sacar() == null)
+                if(thisT.childCount != 0)
                 {
-                    t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
-                    return;
+                    if (!thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                    {
+                        switch (thisT.GetChild(0).GetComponent<GenericObject>().id)
+                        {
+                            case "Taza":
+                                t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0));
+                                animator.SetBool("Pick", false);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        for (int a = 0; a < thisT.GetChild(0).childCount ; a++)
+                        {
+                            if (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>())
+                            {
+                                switch (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>().id)
+                                {
+                                    case "Taza":
+                                        t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0).GetChild(a));
+                                        animator.SetBool("Pick", false);
+                                        break;
+                                }
+                            }
+
+
+                        }
+                    }
+                    
                 }
                 else
                 {
-                    Pick(points, t.gameObject.GetComponent<SacardelMontonScript>().Sacar(), i);
+                    bool aux = t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT);
+                    if (aux)
+                        animator.SetBool("Pick", true);
                 }
-
             }
-
-            else if (t.gameObject.GetComponent<SacarPorcionScript>())
+            /*De no tener la bandeja le pasamos los datos de la mano del player*/
+            else if (t.gameObject.GetComponent<GenericObject>())
             {
-                t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT);
-                animator.SetBool("Pick", true);
-                //Pick(points, t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(), i);
-            }
-
-            /*------Cambiar Descrip*//*Preguntamos si dentro de su herencia de objeto se encuentra la bandeja, de ser asi al Procedimiento Pick le mandamos los puntos y el tranform de la bandeja para setearla como padre
-            de los objetos*/
-            else if (thisT.GetComponentInChildren<Bandeja>())
-            {
-                if (t.gameObject.GetComponent<GenericObject>())
+                if(thisT.childCount != 0)
                 {
-                    if (thisT.GetComponentInChildren<Bandeja>().points.Length > thisT.GetComponentInChildren<Bandeja>().i)
+                    if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                     {
-                        thisT.GetComponentInChildren<Bandeja>().i = Pick(thisT.GetComponentInChildren<Bandeja>().points, thisT.GetComponentInChildren<Bandeja>().transform,
-                            thisT.GetComponentInChildren<Bandeja>().i);
+                        thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i = Pick(
+                            thisT.GetChild(0).gameObject.GetComponent<Bandeja>().points,
+                            thisT.GetChild(0),
+                            thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i);
                     }
                 }
-                else if(t.gameObject.GetComponent<EntregaScript>())
+                else
                 {
-                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
+                    i = Pick(points, thisT, i);
                 }
                 
-            }/*------Cambiar Descrip*//*Preguntamos si el personaje tiene una taza en la mano, de ser asi procedemos a preguntar si interactuamos con la cafetera*/
-            else if(thisT.childCount != 0)
-            {
-                if (thisT.GetChild(0).GetComponent<GenericObject>().id == "Taza")
-                {
-                    if (t.gameObject.GetComponent<CafeteraScripts>())
-                    {
-                        t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0));
-                        animator.SetBool("Pick", false);
-                    }
-                }
-                /*Preguntamos si estamos frente a la caja, de ser asi habilitamos la opcion de entregar la orden*/
-                else if (t.gameObject.GetComponent<EntregaScript>())
-                {                   
-                    if (thisT.GetChild(0).GetComponent<GenericObject>())
-                    {
-                        t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
-                    }
-                }
-            }
-            /*Preguntamos si estamos frente a la cafetera y si tiene una taza lista, en ese caso la tomamos de nuevo*/
-            else if (t.gameObject.GetComponent<CafeteraScripts>())
-            {
-                bool action = t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT);
-                if (action)
-                animator.SetBool("Pick", true);
             }
 
-            /*De no tener la bandeja le pasamos los datos de la mano del player*/
-            else if(t.gameObject.GetComponent<GenericObject>())
-            {
-                i = Pick(points, thisT, i);
-            }                
         }
+
         //De no poder realizar accion, en realidad es que no puede agarar porque no esta en contacto con otro objeto, por lo cual si tiene algun objeto el player lo puede soltar
         else if (thisT.childCount != 0)
         {
             i = Soltar(thisT, i);
-        }
-
+        }        
     }
 }

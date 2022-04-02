@@ -21,7 +21,7 @@ public class SacarPorcionScript : GenericObject
         }
     }
 
-    public void SacarPorcion(Transform point)
+    public void SacarPorcion(Transform point,bool parent)
     {
         foreach (GameObject t in poolPorciones)
         {
@@ -29,7 +29,10 @@ public class SacarPorcionScript : GenericObject
             {
                 t.GetComponent<Rigidbody>().detectCollisions = false;
                 t.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                t.transform.SetParent(point);
+                if (parent)
+                    t.transform.SetParent(point.parent);
+                else
+                    t.transform.SetParent(point);
                 t.transform.position = point.position;
                 
                 t.SetActive(true);
