@@ -1,4 +1,5 @@
 ﻿using com.baiba.core;
+using com.baiba.cliente;
 using com.baiba.GameManager;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using System.Linq;
 
 public class EntregaScript : MonoBehaviour
 {
@@ -83,6 +85,8 @@ public class EntregaScript : MonoBehaviour
                     {
                         t.SetParent(null);
                         t.gameObject.SetActive(false);
+                        Debug.Log(GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key);
+                        GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
                         Debug.Log("Correcto");
                         return;
                     }

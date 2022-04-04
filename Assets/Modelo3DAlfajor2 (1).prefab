@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508db89700da2374b8d4b6a66eaa8105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Alfajor Balnco
+  id: Alfajor Blanco
   isPickable: 0
   isTrash: 0
 --- !u!114 &1593714244354343480

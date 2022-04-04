@@ -16,6 +16,7 @@ namespace com.baiba.cliente
         public Transform punto1;
         public Transform punto2;
         public Transform pared;
+        public bool estado;
 
         private Transform destino;
         private Animator animator;
@@ -48,9 +49,46 @@ namespace com.baiba.cliente
             if (collision.gameObject.CompareTag(CONST.TAG.PUNTODESAPARICION))
             {
                 StopCoroutine(PedirOrden());
-                GameManager.OrdenesPerdidas = +1;
+                if (!estado)
+                {
+                    GameManager.OrdenesPerdidas += 1;
+                    Debug.Log("Ordenes Perdidas: " + GameManager.OrdenesPerdidas);
+                }
+                else
+                {
+                    GameManager.OrdenesCorrectas += 1;
+                    Debug.Log("Ordenes Correctas: " + GameManager.OrdenesCorrectas);
+                }
+                
                 this.gameObject.SetActive(false);
             }
+        }
+
+        public void OrdenCompletada()
+        {
+            StopAllCoroutines();
+            StartCoroutine(OrdenCompletadaRutina());
+        }
+
+        private IEnumerator OrdenCompletadaRutina()
+        {            
+            Debug.Log("Soy Feliz");
+            GameManager.OcultarOrden(this.gameObject);
+            estado = true;
+            t.LookAt(punto2);
+            if (Vector3.Distance(t.position, punto2.position) > 0.25f)
+            {
+                t.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                animator.SetBool("Walk", true);
+                yield return new WaitForEndOfFrame();
+                StartCoroutine(OrdenCompletadaRutina());
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+            
+            
         }
 
         private IEnumerator PedirOrden()
@@ -70,8 +108,7 @@ namespace com.baiba.cliente
                 temporizador.gameObject.SetActive(true);
                 StartCoroutine(Temporizador(tiempoEspera));
                 yield return new WaitForSeconds(tiempoEspera);
-                
-
+                estado = false;
             }
             yield return new WaitForEndOfFrame();
             StartCoroutine(PedirOrden());            

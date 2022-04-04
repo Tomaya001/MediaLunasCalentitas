@@ -134,9 +134,8 @@ namespace com.baiba.GameManager
         }
 
 
-
+        /* ---- UI CONTROLLER ----- */
         public static List<Text> UIOrdenes = new List<Text>();
-      /*-----------------------------------*/  
         public static void CargarUIPrincipal()
         {
             GameObject aux = GameObject.FindGameObjectWithTag(CONST.TAG.CANVASORDENES);
@@ -145,7 +144,7 @@ namespace com.baiba.GameManager
                 if(aux.transform.GetChild(i).GetComponent<Text>())
                 {
                     UIOrdenes.Add(aux.transform.GetChild(i).GetComponent<Text>());
-                    aux.transform.GetChild(i).GetComponent<Text>().text = "Pase";
+                    aux.transform.GetChild(i).gameObject.name = "UILibre";
                     aux.transform.GetChild(i).gameObject.SetActive(false);
                 }
             }
@@ -155,7 +154,7 @@ namespace com.baiba.GameManager
             foreach (Text t in UIOrdenes)
             {
                 Debug.Log(UIOrdenes);
-                if ((!t.gameObject.activeSelf) & (t.text != "pase"))
+                if ((!t.gameObject.activeSelf) & (t.gameObject.name == "UILibre"))
                 {
                     t.text = null;
                     foreach (GameObject g in listaOrdenes.Keys)
@@ -166,13 +165,30 @@ namespace com.baiba.GameManager
                             {
                                 t.text += listaOrdenes[g].ingredientes[i].nombre + '\n';
                             }
-                        }
+                            t.gameObject.name = g.name;
+                            Debug.Log(t.gameObject.name);
+                        }                        
                     }
                     t.gameObject.SetActive(true);
                     break;
                 }
             }
 
+        }
+        public static void OcultarOrden(GameObject cliente)
+        {
+            foreach (Text t in UIOrdenes)
+            {
+                if ((t.gameObject.activeSelf) & (t.gameObject.name.Contains("Cliente")))
+                {
+                    if(t.gameObject.name == cliente.name)
+                    {
+                        t.gameObject.name = "UILibre";
+                        t.text = null;
+                        t.gameObject.SetActive(false);
+                    }
+                }
+            }
         }
     }
 
