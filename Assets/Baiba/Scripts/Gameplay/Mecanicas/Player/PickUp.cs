@@ -171,6 +171,8 @@ public class PickUp : PlayerActions
                                 case "Taza":
                                     t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0));
                                     animator.SetBool("Pick", false);
+                                    points[0].gameObject.GetComponent<PuntoRefScript>().ocupado = false;
+                                    thisT.gameObject.GetComponent<PickUp>().i--;
                                     break;
                             }
                         }
@@ -227,6 +229,18 @@ public class PickUp : PlayerActions
                       
                 }   
                 
+            }
+
+            else if (t.gameObject.GetComponent<EntregaScript>())
+            {
+                if(!thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                {
+                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT);
+                }
+                else
+                {
+                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
+                }
             }
 
             /*De no tener la bandeja le pasamos los datos de la mano del player*/

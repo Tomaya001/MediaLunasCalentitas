@@ -1,53 +1,41 @@
 {
   "ordenes":[
     {
-      "tiempo":10.0,
+      "tiempo":60.0,
       "ingredientes":[
         {
-          "nombre":"1",
+          "nombre":"Taza",
           "tiempo":1.0
         },
         {
-          "nombre":"2",
+          "nombre":"Alfajor Blanco",
           "tiempo":1.0
         },
         {
-          "nombre":"3",
+          "nombre":"Alfajor Negro",
           "tiempo":1.0
         }
       ]
     },
     {
-      "tiempo":10.0,
+      "tiempo":50.0,
       "ingredientes":[
         {
-          "nombre":"3",
+          "nombre":"Muffin",
           "tiempo":1.0
         },
         {
-          "nombre":"2",
-          "tiempo":1.0
-        },
-        {
-          "nombre":"1",
-          "tiempo":1.0
+          "nombre":"Taza",
+          "tiempo":5.0
         }
       ]
     },
     {
-      "tiempo":10.0,
+      "tiempo":20.0,
       "ingredientes":[
         {
-          "nombre":"2",
-          "tiempo":1.0
-        },
-        {
-          "nombre":"1",
-          "tiempo":1.0
-        },
-        {
-          "nombre":"3",
-          "tiempo":1.0
+          "nombre":"Taza",
+          "tiempo":5.0
         }
       ]
     }
