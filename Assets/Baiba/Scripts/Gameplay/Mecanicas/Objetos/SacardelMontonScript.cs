@@ -29,8 +29,6 @@ public class SacardelMontonScript : GenericObject
             }
         }
 
-        Debug.Log(objects.Count);
-        Debug.Log(possBases.Count);
     }
 
     // Update is called once per frame

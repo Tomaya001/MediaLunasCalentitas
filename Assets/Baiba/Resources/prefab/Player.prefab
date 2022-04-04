@@ -523,6 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8299059025292124302}
   - component: {fileID: 6106785658008685981}
+  - component: {fileID: 4942874453634761856}
   m_Layer: 0
   m_Name: Pick Point
   m_TagString: Untagged
@@ -561,6 +562,20 @@ MonoBehaviour:
   canActionPlayerI: 0
   points: []
   animator: {fileID: 0}
+  ids: []
+--- !u!114 &4942874453634761856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593350242878765787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2d8a8d86c53a541acf020b86d904f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ocupado: 0
 --- !u!1 &4306046427900056124
 GameObject:
   m_ObjectHideFlags: 0
