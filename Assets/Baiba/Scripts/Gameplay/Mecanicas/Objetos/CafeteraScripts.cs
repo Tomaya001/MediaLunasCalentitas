@@ -57,6 +57,32 @@ public class CafeteraScripts : MonoBehaviour
         return ok;
     }
 
+    public bool SacarTaza(Transform player, Transform poss)
+    {
+        bool ok;
+        if (this.transform.childCount != 0)
+        {
+            if (tazaLista)
+            {
+                transform.GetChild(0).GetChild(0).transform.position = poss.position;
+                transform.GetChild(0).GetChild(0).transform.SetParent(player);
+                ok = true;
+                temporizador.sprite = circulo;
+                temporizador.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("La taza no esta lista");
+                ok = false;
+            }
+        }
+        else
+        {
+            ok = false;
+        }
+        return ok;
+    }
+
     private IEnumerator PrepararCafe(float tiempoEspera, Transform taza)
     {
         StartCoroutine(Temporizador(0f,tiempoEspera,temporizador,taza));

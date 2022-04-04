@@ -25595,17 +25595,18 @@ PrefabInstance:
         type: 3}
       propertyPath: check
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: bfd7f2d02bcb369458540a3a6e2cea7f,
+        type: 3}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: punto
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1929104048}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: circulo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: check
@@ -29778,6 +29779,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f18b8780a9a158848b6e437a03112f75, type: 3}
+--- !u!4 &1929104048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4532028109793171585, guid: e0dc84ca802fb364684d9be360d3a99d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542345678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1929637652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3ff3db8bfd30c344e900bddee384af8e,

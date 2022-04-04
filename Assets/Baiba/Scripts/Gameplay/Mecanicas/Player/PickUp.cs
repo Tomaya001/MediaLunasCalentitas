@@ -50,6 +50,7 @@ public class PickUp : PlayerActions
                     t.GetComponent<Rigidbody>().useGravity = false;
                     t.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                     t.GetComponent<Outline>().enabled = false;
+                    _points[_i].gameObject.GetComponent<PuntoRefScript>().ocupado = true;
                     _i++;
                     break;
                 }
@@ -69,6 +70,7 @@ public class PickUp : PlayerActions
             p.GetChild(j - 1).gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             p.GetChild(j-1).SetParent(null);
             _i--;
+            points[0].gameObject.GetComponent<PuntoRefScript>().ocupado = false;
         }
         animator.SetBool("Pick", false);
         return _i;
@@ -139,6 +141,7 @@ public class PickUp : PlayerActions
                         t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(
                             thisT.GetChild(0).GetComponent<Bandeja>().points[
                                 thisT.GetChild(0).GetComponent<Bandeja>().i],true);
+                        thisT.GetChild(0).GetComponent<Bandeja>().points[thisT.GetChild(0).GetComponent<Bandeja>().i].gameObject.GetComponent<PuntoRefScript>().ocupado = true;
                         thisT.GetChild(0).GetComponent<Bandeja>().i++;
                     }                        
                     else
@@ -156,45 +159,76 @@ public class PickUp : PlayerActions
 
             else if (t.gameObject.GetComponent<CafeteraScripts>())
             {
-                if(thisT.childCount != 0)
+                int cont = 0;
+                if (t.GetChild(0).childCount == 0) 
                 {
-                    if (!thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                    if (thisT.childCount != 0)
                     {
-                        switch (thisT.GetChild(0).GetComponent<GenericObject>().id)
+                        if (!thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                         {
-                            case "Taza":
-                                t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0));
-                                animator.SetBool("Pick", false);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        for (int a = 0; a < thisT.GetChild(0).childCount ; a++)
-                        {
-                            if (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>())
+                            switch (thisT.GetChild(0).GetComponent<GenericObject>().id)
                             {
-                                switch (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>().id)
+                                case "Taza":
+                                    t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0));
+                                    animator.SetBool("Pick", false);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            for (int a = 0; a < thisT.GetChild(0).childCount; a++)
+                            {
+                                if (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>())
                                 {
-                                    case "Taza":
-                                        t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0).GetChild(a));
-                                        animator.SetBool("Pick", false);
-                                        break;
+                                    switch (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<GenericObject>().id)
+                                    {
+                                        case "Taza":
+                                            t.gameObject.GetComponent<CafeteraScripts>().ActivarCafetera(thisT.GetChild(0).GetChild(a));
+                                            thisT.GetChild(0).gameObject.GetComponent<Bandeja>().points[cont].gameObject.GetComponent<PuntoRefScript>().ocupado = false;
+                                            animator.SetBool("Pick", false);
+                                            break;
+                                    }
+                                    cont++;
                                 }
                             }
-
-
                         }
                     }
-                    
                 }
                 else
                 {
-                    bool aux = t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT);
-                    if (aux)
-                        animator.SetBool("Pick", true);
-                }
+                    if(thisT.childCount == 0)
+                    {
+                        bool aux = t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT);
+                        if (aux)
+                            animator.SetBool("Pick", true);
+                        
+                    }                    
+                    else
+                    {
+                        Debug.Log("Entro");
+                        if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                        {
+                            for (int a = 0; a < thisT.GetChild(0).childCount / 2; a++)
+                            {
+                                if(thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>())
+                                {
+                                    Debug.Log(thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado);
+                                    if (!thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado)
+                                    {
+                                        t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT.GetChild(0), thisT.GetChild(0).GetChild(a));
+                                        thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado = true;
+                                    }
+                                }
+                                
+                            }
+                        }                            
+                    }
+
+                      
+                }   
+                
             }
+
             /*De no tener la bandeja le pasamos los datos de la mano del player*/
             else if (t.gameObject.GetComponent<GenericObject>())
             {
