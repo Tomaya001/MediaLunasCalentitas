@@ -16,11 +16,16 @@ namespace com.baiba.cliente
         public Transform punto1;
         public Transform punto2;
         public Transform pared;
+        public Transform spwan;
         public bool estado;
 
         private Transform destino;
         private Animator animator;
         private Orden orden;
+        private bool caminar;
+        private bool pidio;
+
+        private Coroutine temp;
 
 
         Transform t;
@@ -28,19 +33,46 @@ namespace com.baiba.cliente
         private void Awake()
         {
             t = this.gameObject.transform;
-            destino = punto1;
             animator = gameObject.GetComponent<Animator>();
         }
 
         private void Start()
-        {   orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length - 1)];
-            GameManager.ListaOrdenes.Add(this.gameObject,orden);
-            tiempoEspera = orden.tiempo;            
-            StartCoroutine(PedirOrden());
+        {   
+        }
+
+        private void OnEnable()
+        {
+            orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length - 1)];
+            if (GameManager.ListaOrdenes.ContainsKey(this.gameObject))
+            {
+                GameManager.ListaOrdenes.Remove(this.gameObject);
+            }
+            GameManager.ListaOrdenes.Add(this.gameObject, orden);
+            tiempoEspera = orden.tiempo;
+            destino = punto1;
+            caminar = true;
+            pidio = false;
         }
 
         private void Update()
         {
+            if (caminar)
+            {
+                if (Vector3.Distance(t.position, destino.position) > 0.25f)
+                {
+                    t.LookAt(destino);
+                    t.Translate(Vector3.forward * velocidad * Time.deltaTime);
+                    animator.SetBool("Walk", true);
+                }
+                else
+                {
+                    if (!pidio)
+                    {
+                        PedirOrden();
+                    }
+                    caminar = false;
+                }
+            }
             
         }
 
@@ -48,7 +80,6 @@ namespace com.baiba.cliente
         {
             if (collision.gameObject.CompareTag(CONST.TAG.PUNTODESAPARICION))
             {
-                StopCoroutine(PedirOrden());
                 if (!estado)
                 {
                     GameManager.OrdenesPerdidas += 1;
@@ -59,63 +90,38 @@ namespace com.baiba.cliente
                     GameManager.OrdenesCorrectas += 1;
                     Debug.Log("Ordenes Correctas: " + GameManager.OrdenesCorrectas);
                 }
-                
+                this.transform.position = spwan.position;
                 this.gameObject.SetActive(false);
             }
-        }
+            else if(collision.gameObject.CompareTag(CONST.TAG.CLIENTE))
+            {                
+                caminar = false;
+                destino = punto2;
+                PedirOrden();
+            }
+        }        
 
         public void OrdenCompletada()
         {
-            StopAllCoroutines();
-            StartCoroutine(OrdenCompletadaRutina());
-        }
-
-        private IEnumerator OrdenCompletadaRutina()
-        {            
+            StopCoroutine(temp);
             Debug.Log("Soy Feliz");
             GameManager.OcultarOrden(this.gameObject);
+            destino = punto2;
             estado = true;
-            t.LookAt(punto2);
-            if (Vector3.Distance(t.position, punto2.position) > 0.25f)
-            {
-                t.Translate(Vector3.forward * velocidad * Time.deltaTime);
-                animator.SetBool("Walk", true);
-                yield return new WaitForEndOfFrame();
-                StartCoroutine(OrdenCompletadaRutina());
-            }
-            else
-            {
-                this.gameObject.SetActive(false);
-            }
-            
-            
+            caminar = true;
         }
 
-        private IEnumerator PedirOrden()
+        private void PedirOrden()
         {
-            if (Vector3.Distance(t.position, destino.position) > 0.25f)
-            {
-                t.LookAt(destino);
-                t.Translate(Vector3.forward * velocidad * Time.deltaTime);
-                animator.SetBool("Walk", true);
-
-            }
-            else
-            {
-                GameManager.MostrarOrden(this.gameObject);
-                animator.SetBool("Walk", false);
-                destino = punto2;
-                temporizador.gameObject.SetActive(true);
-                StartCoroutine(Temporizador(tiempoEspera));
-                yield return new WaitForSeconds(tiempoEspera);
-                estado = false;
-            }
-            yield return new WaitForEndOfFrame();
-            StartCoroutine(PedirOrden());            
+            pidio = true;
+            t.LookAt(pared);
+            GameManager.MostrarOrden(this.gameObject);
+            temp = StartCoroutine(Temporizador(tiempoEspera));
         }
 
         private IEnumerator Temporizador(float tiempo)
         {
+            temporizador.gameObject.SetActive(true);
             if (tiempo > 0)
             {
                 tiempo -= Time.deltaTime;
@@ -138,6 +144,8 @@ namespace com.baiba.cliente
             else
             {
                 temporizador.gameObject.SetActive(false);
+                estado = false;
+                caminar = true;
             }
         }
     }

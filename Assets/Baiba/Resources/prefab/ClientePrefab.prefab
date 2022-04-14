@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 3511658719703021611}
   m_Father: {fileID: 915890569165062373}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -112,37 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6c49b35e7f3d84ba57efa8275d808b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 2002956158793827395}
---- !u!1 &805874275835016535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3191085516169333149}
-  m_Layer: 0
-  m_Name: Temporizador
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3191085516169333149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805874275835016535}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39430785, y: -0.01728294, z: -0.07397461}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 915890569165062373}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  canvasCliente: {fileID: 0}
 --- !u!1 &915890569165062379
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +128,7 @@ GameObject:
   - component: {fileID: 5251013810194542293}
   m_Layer: 0
   m_Name: ClientePrefab
-  m_TagString: Untagged
+  m_TagString: Cliente
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +145,6 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5156755061488874640}
-  - {fileID: 3191085516169333149}
   - {fileID: 5911673700588225566}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -228,6 +197,8 @@ MonoBehaviour:
   punto1: {fileID: 0}
   punto2: {fileID: 0}
   pared: {fileID: 0}
+  spwan: {fileID: 0}
+  estado: 0
 --- !u!95 &5251013810194542293
 Animator:
   serializedVersion: 3

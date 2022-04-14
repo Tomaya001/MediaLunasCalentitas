@@ -9,11 +9,16 @@ public class Bandeja : PickUp
     public bool inUse;
     public bool canbeReleased;
 
+    public Vector3 possInicial;
+    public Quaternion rootInicial;
+
     private void Start()
     {
         i = 0;
         inUse = false;
         canbeReleased = false;
+        possInicial = this.transform.position;
+        rootInicial = this.transform.rotation;
     }
 
     private void Update()

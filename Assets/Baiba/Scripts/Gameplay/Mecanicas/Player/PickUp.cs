@@ -126,6 +126,17 @@ public class PickUp : PlayerActions
         
     }
 
+    private void Descopupar(Transform p)
+    {
+        for (int i = 0; i < p.childCount; i++)
+        {
+            if (p.GetChild(i).gameObject.GetComponent<PuntoRefScript>())
+            {
+                p.GetChild(i).gameObject.GetComponent<PuntoRefScript>().ocupado = false;
+            }
+        }
+    }
+
 
     public void ActionPlayer()
     {
@@ -207,10 +218,9 @@ public class PickUp : PlayerActions
                     }                    
                     else
                     {
-                        Debug.Log("Entro");
                         if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                         {
-                            for (int a = 0; a < thisT.GetChild(0).childCount / 2; a++)
+                            for (int a = 0; a < thisT.GetChild(0).childCount; a++)
                             {
                                 if(thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>())
                                 {
@@ -239,7 +249,9 @@ public class PickUp : PlayerActions
                 }
                 else
                 {
-                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
+                    thisT.GetChild(0).GetComponent<Bandeja>().i = 0;
+                    thisT.gameObject.GetComponent<PickUp>().i--;
+                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));                                        
                 }
             }
 

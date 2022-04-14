@@ -53,6 +53,8 @@ namespace com.baiba.GameManager
             nivelJuego = NivelJuego;
             MaxOrdenesPerdidas = maxOrdenesPerdidas;
             Time.timeScale = 1;
+            ordenesCorrectas = 0;
+            ordenesPerdidas = 0;
             CargarNivel();
         }
         //Fin Instanciamiento Estatico
@@ -62,13 +64,12 @@ namespace com.baiba.GameManager
 
         }
 
-        public List<Text> aux;
+
         private void Update()
         {
-            aux = UIOrdenes;
-
             if(ordenesPerdidas >= MaxOrdenesPerdidas)
             {
+                StopAllCoroutines();
                 Time.timeScale = 0f;
                 UnityEngine.SceneManagement.SceneManager.LoadScene(CONST.SCENES.LOSE);
                 ordenesPerdidas = 0;
@@ -129,13 +130,14 @@ namespace com.baiba.GameManager
         private static int ordenesPerdidas;
         public static int OrdenesPerdidas
         {
-            get { return OrdenesPerdidas; }
+            get { return ordenesPerdidas; }
             set { ordenesPerdidas = value; }
         }
 
 
         /* ---- UI CONTROLLER ----- */
         public static List<Text> UIOrdenes = new List<Text>();
+        public static List<string> clientesActivos = new List<string>();
         public static void CargarUIPrincipal()
         {
             GameObject aux = GameObject.FindGameObjectWithTag(CONST.TAG.CANVASORDENES);
@@ -149,32 +151,43 @@ namespace com.baiba.GameManager
                 }
             }
         }
+
         public static void MostrarOrden(GameObject cliente)
         {
-            foreach (Text t in UIOrdenes)
+            for (int i = 0; i < UIOrdenes.Count; i++)
             {
-                Debug.Log(UIOrdenes);
-                if ((!t.gameObject.activeSelf) & (t.gameObject.name == "UILibre"))
+                if (!UIOrdenes[i].gameObject.activeSelf)
                 {
-                    t.text = null;
-                    foreach (GameObject g in listaOrdenes.Keys)
+                    if(UIOrdenes[i].gameObject.name == "UILibre")
                     {
-                        if (g == cliente)
+                        if(UIOrdenes[i].gameObject.name != cliente.name)
                         {
-                            for (int i = 0; i < listaOrdenes[g].ingredientes.Length; i++)
+                            if (!clientesActivos.Contains(cliente.name))
                             {
-                                t.text += listaOrdenes[g].ingredientes[i].nombre + '\n';
+                                foreach (GameObject g in listaOrdenes.Keys)
+                                {
+                                    if (g == cliente)
+                                    {
+                                        UIOrdenes[i].text = null;
+                                        for (int f = 0; f < listaOrdenes[g].ingredientes.Length; f++)
+                                        {
+                                            UIOrdenes[i].text += listaOrdenes[g].ingredientes[f].nombre + '\n';
+                                        }
+                                        UIOrdenes[i].gameObject.name = cliente.name;
+                                        clientesActivos.Add(cliente.name);
+                                        UIOrdenes[i].gameObject.SetActive(true);
+                                        return;
+                                    }
+                                }
                             }
-                            t.gameObject.name = g.name;
-                            Debug.Log(t.gameObject.name);
-                        }                        
+                            
+                        }
                     }
-                    t.gameObject.SetActive(true);
-                    break;
                 }
             }
 
         }
+
         public static void OcultarOrden(GameObject cliente)
         {
             foreach (Text t in UIOrdenes)
@@ -184,10 +197,20 @@ namespace com.baiba.GameManager
                     if(t.gameObject.name == cliente.name)
                     {
                         t.gameObject.name = "UILibre";
+                        clientesActivos.Remove(cliente.name);
                         t.text = null;
                         t.gameObject.SetActive(false);
+                        return;
                     }
                 }
+            }
+        }
+
+        public static void DebugTexto(List<Text> Vector)
+        {
+            foreach (Text t in Vector)
+            {
+                Debug.Log(t.gameObject.name);
             }
         }
     }

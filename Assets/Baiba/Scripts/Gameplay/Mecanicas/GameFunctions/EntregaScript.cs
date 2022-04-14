@@ -83,8 +83,27 @@ public class EntregaScript : MonoBehaviour
 
                     if (correcto)
                     {
+                        t.GetComponentInParent<Animator>().SetBool("Pick", false);
                         t.SetParent(null);
-                        t.gameObject.SetActive(false);
+                        if (t.gameObject.GetComponent<Bandeja>())
+                        {
+                            for (int f = 0; f < t.childCount; f++)
+                            {
+                                if (t.GetChild(f).gameObject.GetComponent<GenericObject>())
+                                {                                    
+                                    t.GetChild(f).gameObject.SetActive(false);
+                                    t.GetChild(f).SetParent(null);
+                                    f--;                                    
+                                }                                
+                            }
+                            t.SetParent(null);
+                            t.transform.position = t.gameObject.GetComponent<Bandeja>().possInicial;
+                            t.transform.rotation = t.gameObject.GetComponent<Bandeja>().rootInicial;
+                            t.transform.GetComponent<Collider>().enabled = true;
+                            t.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
+                            t.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                            t.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        }
                         Debug.Log(GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key);
                         GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
                         Debug.Log("Correcto");

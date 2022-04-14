@@ -69,6 +69,7 @@ public class CafeteraScripts : MonoBehaviour
                 ok = true;
                 temporizador.sprite = circulo;
                 temporizador.gameObject.SetActive(false);
+                tazaLista = false;
             }
             else
             {
