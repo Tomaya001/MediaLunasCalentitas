@@ -27,7 +27,10 @@ public class SpwanClientesScript : MonoBehaviour
     private void Start()
     {
         tiempo = tiempoEspera;
-        poolClientes[0].SetActive(true);
+        if(poolClientes.Count == 4)
+        {
+            poolClientes[0].SetActive(true);
+        }        
     }
 
     public void GenerarPool()

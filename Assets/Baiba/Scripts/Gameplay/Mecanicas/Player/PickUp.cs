@@ -224,14 +224,14 @@ public class PickUp : PlayerActions
                             {
                                 if(thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>())
                                 {
-                                    Debug.Log(thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado);
                                     if (!thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado)
                                     {
                                         t.gameObject.GetComponent<CafeteraScripts>().SacarTaza(thisT.GetChild(0), thisT.GetChild(0).GetChild(a));
                                         thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado = true;
+                                        break;
                                     }
                                 }
-                                
+                                cont++;
                             }
                         }                            
                     }

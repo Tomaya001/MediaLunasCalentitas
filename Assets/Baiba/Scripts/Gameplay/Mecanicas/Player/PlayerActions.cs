@@ -33,14 +33,15 @@ public class PlayerActions : MonoBehaviour
             {
                 other.gameObject.GetComponent<SacardelMontonScript>().ResaltarTaza(estado);
             }
-            if (other.gameObject.GetComponent<Outline>())
+            else if (other.gameObject.GetComponent<Outline>())
             {
                 other.gameObject.GetComponent<Outline>().enabled = estado;
             }
-            if (other.gameObject.GetComponentInParent<Outline>())
+            else if (other.gameObject.GetComponentInParent<Outline>())
             {
                 other.transform.parent.gameObject.GetComponent<Outline>().enabled = estado;
             }
+            return;
         }
         catch
         {
@@ -49,22 +50,34 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            EstadoOutline(other, true);
+            if (t==null)
+            {
+                EstadoOutline(other, true);
+                t = other.gameObject.transform;
+                Debug.Log(t.gameObject.name);
+                enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
+                canActionPlayer = true;
+            }            
         }
-    }
+    }*/
 
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
-            t = other.gameObject.transform;
-            enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
-            canActionPlayer = true;
+            if (t == null)
+            {
+                EstadoOutline(other, true);
+                t = other.gameObject.transform;
+                enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
+                canActionPlayer = true;
+            }
         }
+
     }
     
     public void OnTriggerExit(Collider other)

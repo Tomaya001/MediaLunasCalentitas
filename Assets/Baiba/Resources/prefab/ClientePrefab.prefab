@@ -193,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 5
   tiempoEspera: 10
+  canvas: {fileID: 2002956158793827395}
   temporizador: {fileID: 9203443169933185393}
   punto1: {fileID: 0}
   punto2: {fileID: 0}

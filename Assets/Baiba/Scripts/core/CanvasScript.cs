@@ -15,7 +15,10 @@ namespace com.baiba.UI
         // Start is called before the first frame update
         void Start()
         {
-
+            if(canvasCliente == null)
+            {
+                canvasCliente = this.gameObject.GetComponent<Canvas>();
+            }
         }
 
         // Update is called once per frame

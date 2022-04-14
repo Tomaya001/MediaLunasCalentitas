@@ -12,6 +12,7 @@ namespace com.baiba.cliente
     {
         public float velocidad;
         public float tiempoEspera;
+        public Canvas canvas;
         public Image temporizador;
         public Transform punto1;
         public Transform punto2;
@@ -24,8 +25,8 @@ namespace com.baiba.cliente
         private Orden orden;
         private bool caminar;
         private bool pidio;
-
-        private Coroutine temp;
+        private bool timerOn;
+        private float tiempo;
 
 
         Transform t;
@@ -34,10 +35,6 @@ namespace com.baiba.cliente
         {
             t = this.gameObject.transform;
             animator = gameObject.GetComponent<Animator>();
-        }
-
-        private void Start()
-        {   
         }
 
         private void OnEnable()
@@ -49,9 +46,12 @@ namespace com.baiba.cliente
             }
             GameManager.ListaOrdenes.Add(this.gameObject, orden);
             tiempoEspera = orden.tiempo;
+            timerOn = false;
+            tiempo = tiempoEspera;
             destino = punto1;
             caminar = true;
             pidio = false;
+            estado = false;
         }
 
         private void Update()
@@ -71,6 +71,34 @@ namespace com.baiba.cliente
                         PedirOrden();
                     }
                     caminar = false;
+                }
+            }
+
+            if (timerOn)
+            {
+                if (temporizador.gameObject.activeSelf == false)
+                {
+                    temporizador.gameObject.SetActive(true);
+                }
+                if (tiempo > 0)
+                {
+                    tiempo -= Time.deltaTime;
+                    temporizador.fillAmount = (tiempo / tiempoEspera);
+                    if ((tiempo * 100 / tiempoEspera) <= 50 & (tiempo * 100 / tiempoEspera) > 25)
+                    {
+                        temporizador.color = new Color(0.93f, 0.49f, 0.1f);
+                    }
+                    else if ((tiempo * 100 / tiempoEspera) <= 25)
+                    {
+                        temporizador.color = Color.red;
+                    }
+
+                }
+                else
+                {
+                    ResetUI();
+                    estado = false;
+                    caminar = true;
                 }
             }
             
@@ -94,16 +122,20 @@ namespace com.baiba.cliente
                 this.gameObject.SetActive(false);
             }
             else if(collision.gameObject.CompareTag(CONST.TAG.CLIENTE))
-            {                
-                caminar = false;
-                destino = punto2;
-                PedirOrden();
+            {
+                if(!estado)
+                {
+                    caminar = false;
+                    destino = punto2;
+                    PedirOrden();
+                }                
             }
         }        
 
         public void OrdenCompletada()
         {
-            StopCoroutine(temp);
+            timerOn = false;
+            ResetUI();
             Debug.Log("Soy Feliz");
             GameManager.OcultarOrden(this.gameObject);
             destino = punto2;
@@ -116,37 +148,14 @@ namespace com.baiba.cliente
             pidio = true;
             t.LookAt(pared);
             GameManager.MostrarOrden(this.gameObject);
-            temp = StartCoroutine(Temporizador(tiempoEspera));
+            timerOn = true;
         }
 
-        private IEnumerator Temporizador(float tiempo)
+        private void ResetUI()
         {
-            temporizador.gameObject.SetActive(true);
-            if (tiempo > 0)
-            {
-                tiempo -= Time.deltaTime;
-                temporizador.fillAmount = (tiempo/tiempoEspera);
-                if((tiempo*100/tiempoEspera) <=50 & (tiempo * 100 / tiempoEspera) > 25)
-                {
-                    temporizador.color = new Color(0.93f, 0.49f, 0.1f);
-                }
-                else if((tiempo * 100 / tiempoEspera) <= 25)
-                {
-                    temporizador.color = Color.red;
-                }
-
-            }
-            yield return new WaitForEndOfFrame();
-            if (tiempo > 0)
-            {
-                StartCoroutine(Temporizador(tiempo));
-            }
-            else
-            {
-                temporizador.gameObject.SetActive(false);
-                estado = false;
-                caminar = true;
-            }
+            temporizador.color = Color.green;
+            temporizador.fillAmount = 1f;
+            temporizador.gameObject.SetActive(false);
         }
     }
 }

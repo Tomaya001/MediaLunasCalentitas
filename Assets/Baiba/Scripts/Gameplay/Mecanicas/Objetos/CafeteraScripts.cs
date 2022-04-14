@@ -13,6 +13,7 @@ public class CafeteraScripts : MonoBehaviour
 
     public Transform punto;
     public bool tazaLista;
+    public int DebugEntrada = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class CafeteraScripts : MonoBehaviour
                 ok = true;
                 temporizador.sprite = circulo;
                 temporizador.gameObject.SetActive(false);
+                tazaLista = false;
             }
             else
             {
@@ -62,6 +64,7 @@ public class CafeteraScripts : MonoBehaviour
         bool ok;
         if (this.transform.childCount != 0)
         {
+            Debug.Log(player.gameObject.name);
             if (tazaLista)
             {
                 transform.GetChild(0).GetChild(0).transform.position = poss.position;
