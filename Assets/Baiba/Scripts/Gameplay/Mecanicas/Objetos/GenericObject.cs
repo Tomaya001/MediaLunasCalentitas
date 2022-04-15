@@ -8,11 +8,15 @@ public class GenericObject : MonoBehaviour
     public string id;
     public bool isPickable;
     public bool isTrash;
+    public bool activo;
 
     private Animator animator;
+    
+    private float tiempo;
 
     private void Awake()
     {
+        tiempo = 3f;
         if (gameObject.GetComponent<Animator>())
         {
             animator = gameObject.GetComponent<Animator>();
@@ -27,6 +31,26 @@ public class GenericObject : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (this.gameObject.GetComponent<Renderer>())
+        {
+            if (!activo)
+            {
+                if (tiempo > 0f)
+                {
+                    tiempo -= Time.deltaTime;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Renderer>().enabled = true;
+                    activo = true;
+                    tiempo = 3f;
+                }
+            }
+        }        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(id == "Taza")
@@ -37,6 +61,5 @@ public class GenericObject : MonoBehaviour
                 animator.SetBool("Trash", true);
             }
         }
-        
     }
 }

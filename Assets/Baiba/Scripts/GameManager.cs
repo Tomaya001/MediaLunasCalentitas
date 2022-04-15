@@ -52,9 +52,10 @@ namespace com.baiba.GameManager
             lang.Init("es");
             nivelJuego = NivelJuego;
             MaxOrdenesPerdidas = maxOrdenesPerdidas;
-            Time.timeScale = 1;
+            Time.timeScale = 1f;
             ordenesCorrectas = 0;
             ordenesPerdidas = 0;
+            dificultad = 1f;
             CargarNivel();
         }
         //Fin Instanciamiento Estatico
@@ -78,6 +79,13 @@ namespace com.baiba.GameManager
         }
 
         //Declaracion de Variables Get Set
+        private static float dificultad;
+        public static float Dificultad
+        {
+            get { return dificultad; }
+            set { dificultad = value; }
+        }
+
         private static string json;
         public static string Json
         {
@@ -101,12 +109,6 @@ namespace com.baiba.GameManager
             Nivel = JsonUtility.FromJson<Level>(Json);
         }
 
-        /*private static List<Orden> listaOrdenes = new List<Orden>();
-        public static List<Orden> ListaOrdenes
-        {
-            get { return listaOrdenes; }
-            set { ListaOrdenes = listaOrdenes; }
-        }*/
         private static Dictionary<GameObject,Orden> listaOrdenes = new Dictionary<GameObject, Orden>();
         public static Dictionary<GameObject, Orden> ListaOrdenes
         {

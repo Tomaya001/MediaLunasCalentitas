@@ -10,7 +10,7 @@ using System.IO;
 using System;
 using System.Linq;
 
-public class EntregaScript : MonoBehaviour
+public class EntregaScript : GenericObject
 {
 
 

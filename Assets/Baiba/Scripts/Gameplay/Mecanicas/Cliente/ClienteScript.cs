@@ -39,13 +39,13 @@ namespace com.baiba.cliente
 
         private void OnEnable()
         {
-            orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length - 1)];
+            orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length)];
             if (GameManager.ListaOrdenes.ContainsKey(this.gameObject))
             {
                 GameManager.ListaOrdenes.Remove(this.gameObject);
             }
             GameManager.ListaOrdenes.Add(this.gameObject, orden);
-            tiempoEspera = orden.tiempo;
+            tiempoEspera = orden.tiempo * GameManager.Dificultad;
             timerOn = false;
             tiempo = tiempoEspera;
             destino = punto1;
@@ -130,6 +130,7 @@ namespace com.baiba.cliente
                     PedirOrden();
                 }                
             }
+            GameManager.Dificultad += 0.1f;
         }        
 
         public void OrdenCompletada()

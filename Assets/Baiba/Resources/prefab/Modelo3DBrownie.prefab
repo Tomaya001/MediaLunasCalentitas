@@ -159,6 +159,7 @@ MonoBehaviour:
   id: Brownie
   isPickable: 0
   isTrash: 0
+  activo: 0
 --- !u!114 &-2541725578575467552
 MonoBehaviour:
   m_ObjectHideFlags: 0

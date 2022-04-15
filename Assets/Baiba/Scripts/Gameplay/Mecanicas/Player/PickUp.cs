@@ -162,6 +162,8 @@ public class PickUp : PlayerActions
                                 thisT.GetChild(0).GetComponent<Bandeja>().i],true);
                         thisT.GetChild(0).GetComponent<Bandeja>().points[thisT.GetChild(0).GetComponent<Bandeja>().i].gameObject.GetComponent<PuntoRefScript>().ocupado = true;
                         thisT.GetChild(0).GetComponent<Bandeja>().i++;
+                        t.gameObject.GetComponent<SacarPorcionScript>().activo = false;
+                        t.gameObject.GetComponent<Renderer>().enabled = false;
                     }                        
                     else
                     {
@@ -172,6 +174,8 @@ public class PickUp : PlayerActions
                 {
                     animator.SetBool("Pick", true);
                     t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT,false);
+                    t.gameObject.GetComponent<SacarPorcionScript>().activo = false;
+                    t.gameObject.GetComponent<Renderer>().enabled = false;
                 }
                     
             }

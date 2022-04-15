@@ -1,0 +1,43 @@
+{
+  "ordenes":[
+    {
+      "tiempo":60.0,
+      "ingredientes":[
+        {
+          "nombre":"Taza",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Alfajor Blanco",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Alfajor Negro",
+          "tiempo":1.0
+        }
+      ]
+    },
+    {
+      "tiempo":50.0,
+      "ingredientes":[
+        {
+          "nombre":"Muffin",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Taza",
+          "tiempo":5.0
+        }
+      ]
+    },
+    {
+      "tiempo":20.0,
+      "ingredientes":[
+        {
+          "nombre":"Taza",
+          "tiempo":5.0
+        }
+      ]
+    }
+  ]
+}

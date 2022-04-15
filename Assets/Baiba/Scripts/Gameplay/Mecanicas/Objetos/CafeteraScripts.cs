@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CafeteraScripts : MonoBehaviour
+public class CafeteraScripts : GenericObject
 {
     public Image temporizador;
     public float tiempoEspera;

@@ -160,6 +160,7 @@ MonoBehaviour:
   id: Cheesecake
   isPickable: 0
   isTrash: 0
+  activo: 0
 --- !u!114 &5620784776697294196
 MonoBehaviour:
   m_ObjectHideFlags: 0

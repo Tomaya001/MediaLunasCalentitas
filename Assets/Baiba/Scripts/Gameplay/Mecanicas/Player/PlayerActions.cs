@@ -12,6 +12,7 @@ public class PlayerActions : MonoBehaviour
     public bool enabledCollisonTarget;
     public static bool canActionPlayer;
     public bool canActionPlayerI;
+    public Text botonAccion; // Cambiar por Imagen
 
 
     private void Start()
@@ -73,11 +74,39 @@ public class PlayerActions : MonoBehaviour
             {
                 EstadoOutline(other, true);
                 t = other.gameObject.transform;
+                ReferenciarUI(true);
                 enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
                 canActionPlayer = true;
             }
         }
 
+    }
+
+    public void ReferenciarUI(bool activar)
+    {
+        if (activar)
+        {
+            try
+            {
+                botonAccion.text = t.gameObject.GetComponent<GenericObject>().id;
+            }
+            catch
+            {
+
+            }
+        }
+        else
+        {
+            try
+            {
+                botonAccion.text = null;
+            }
+            catch
+            {
+
+            }
+        }
+        
     }
     
     public void OnTriggerExit(Collider other)
@@ -85,9 +114,11 @@ public class PlayerActions : MonoBehaviour
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
             EstadoOutline(other, false);
+            ReferenciarUI(false);
         }
         canActionPlayer = false;
         t = null;
+
     }
 
 }
