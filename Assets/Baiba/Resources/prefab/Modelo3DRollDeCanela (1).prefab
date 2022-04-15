@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8520412567272870510
+--- !u!1 &759584747211883895
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9040209594489669844}
-  - component: {fileID: 5393796332688082801}
-  - component: {fileID: 7871846185189602235}
-  - component: {fileID: 8787970750762857655}
-  - component: {fileID: 7758189796462627944}
-  - component: {fileID: -1969448260499722185}
-  - component: {fileID: 1318367710072892235}
+  - component: {fileID: 126460196740325325}
+  - component: {fileID: 3922245448217251944}
+  - component: {fileID: 1263939458557879458}
+  - component: {fileID: 1856892939626804055}
+  - component: {fileID: 1730485673200432437}
+  - component: {fileID: 5955415631144842357}
+  - component: {fileID: 1824978045727701916}
   m_Layer: 0
-  m_Name: Modelo3DAlfajor1
+  m_Name: Modelo3DRollDeCanela (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9040209594489669844
+--- !u!4 &126460196740325325
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_GameObject: {fileID: 759584747211883895}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 19.362, y: 1.575, z: -0.571}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &5393796332688082801
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3922245448217251944
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
-  m_Mesh: {fileID: -1605747038353671486, guid: a7257deaffe8db7439c82cc9a325e601, type: 3}
---- !u!23 &7871846185189602235
+  m_GameObject: {fileID: 759584747211883895}
+  m_Mesh: {fileID: -4098226674686543518, guid: 7b36dd1bf1c2544489c521f6f1453966, type: 3}
+--- !u!23 &1263939458557879458
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
+  m_GameObject: {fileID: 759584747211883895}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4be71a772391ca241b431d3c83237e57, type: 2}
+  - {fileID: 2100000, guid: 8fff4973dcc900441ac0fc7055666bfe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,13 +83,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!54 &8787970750762857655
+--- !u!54 &1856892939626804055
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
+  m_GameObject: {fileID: 759584747211883895}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -99,43 +99,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7758189796462627944
+--- !u!64 &1730485673200432437
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
+  m_GameObject: {fileID: 759584747211883895}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -1605747038353671486, guid: a7257deaffe8db7439c82cc9a325e601, type: 3}
---- !u!114 &-1969448260499722185
+  m_Mesh: {fileID: -4098226674686543518, guid: 7b36dd1bf1c2544489c521f6f1453966, type: 3}
+--- !u!114 &5955415631144842357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
+  m_GameObject: {fileID: 759584747211883895}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 508db89700da2374b8d4b6a66eaa8105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Alfajor Negro
+  id: Roll de Canela
   isPickable: 0
   isTrash: 0
---- !u!114 &1318367710072892235
+--- !u!114 &1824978045727701916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520412567272870510}
-  m_Enabled: 1
+  m_GameObject: {fileID: 759584747211883895}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 

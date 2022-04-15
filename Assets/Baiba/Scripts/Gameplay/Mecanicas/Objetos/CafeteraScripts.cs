@@ -10,15 +10,21 @@ public class CafeteraScripts : MonoBehaviour
     public float tiempoEspera;
     public Sprite check;
     public Sprite circulo;
+    public GameObject joystick;
+    public GameObject panel;
 
     public Transform punto;
     public bool tazaLista;
-    public int DebugEntrada = 0;
+    public List<string> ingredientes;
 
+
+    private Transform point;
+    private Transform taza;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,9 +33,42 @@ public class CafeteraScripts : MonoBehaviour
         
     }
 
-    public void ActivarCafetera(Transform taza)
+    public void AbrirInventario(Transform _point,Transform _taza)
     {
-        StartCoroutine(PrepararCafe(tiempoEspera, taza));
+        taza = _taza;
+        point = _point;
+        joystick.SetActive(false);
+        panel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ClickElemento(string ingrediente)
+    {
+        if(taza != null)
+        {
+            if (!ingredientes.Contains(taza.GetComponent<GenericObject>().id))
+            {
+                switch (ingrediente)
+                {
+                    case "Expresso":
+                        taza.GetComponent<GenericObject>().id = "Expresso";
+                        break;
+                    case "Latte":
+                        taza.GetComponent<GenericObject>().id = "Latte";
+                        break;
+                    case "Americano":
+                        taza.GetComponent<GenericObject>().id = "Americano";
+                        break;
+                    case "Moca":
+                        taza.GetComponent<GenericObject>().id = "Moca";
+                        break;
+                }
+                StartCoroutine(PrepararCafe(tiempoEspera, taza));
+                joystick.SetActive(true);
+                Time.timeScale = 1f;
+                panel.SetActive(false);
+            }            
+        }        
     }
 
     public bool SacarTaza(Transform player)

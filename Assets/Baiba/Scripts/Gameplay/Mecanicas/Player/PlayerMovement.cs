@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     Transform t;
     public Joystick joystick;
+    public GameObject humoMovimiento;
 
     Animator animator;
 
@@ -28,11 +29,13 @@ public class PlayerMovement : MonoBehaviour
 
             t.Rotate(new Vector3(0, -90, 0));
             animator.SetBool("Walk", true);
+            humoMovimiento.SetActive(true);
         }
         else
         {
             animator.SetBool("Walk", false);
+            humoMovimiento.SetActive(false);
         }
-        
+
     }
 }
