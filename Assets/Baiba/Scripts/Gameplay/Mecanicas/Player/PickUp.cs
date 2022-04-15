@@ -93,6 +93,10 @@ public class PickUp : PlayerActions
             point.gameObject.GetComponent<Bandeja>().Descopupar(point);
             point.position = point.gameObject.GetComponent<Bandeja>().possInicial;
             point.rotation = point.gameObject.GetComponent<Bandeja>().rootInicial;
+            point.gameObject.GetComponent<Collider>().enabled = true;
+            point.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
+            point.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            point.parent.gameObject.GetComponent<PickUp>().i = 0;
             point.SetParent(null);
             animator.SetBool("Pick", false);
         }
@@ -282,6 +286,51 @@ public class PickUp : PlayerActions
                                 }
                             }
                             cont++;
+                        }
+                    }
+                }
+            }
+
+            else if (t.gameObject.GetComponent<SacardelMontonScript>())
+            {
+                int cont = 0;
+                if(thisT.childCount == 0)
+                {
+                    if(t.gameObject.GetComponent<SacardelMontonScript>().transform.childCount != 0)
+                    {
+                        t.gameObject.GetComponent<SacardelMontonScript>().Sacar(thisT,false);
+                        thisT.gameObject.GetComponent<PickUp>().i++;
+                        animator.SetBool("Pick", true);
+                    }
+                    else
+                    {
+                        t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
+                    }
+                }
+                else
+                {
+                    if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                    {
+                        if(t.gameObject.GetComponent<SacardelMontonScript>().transform.childCount != 0)
+                        {
+                            for (int a = 0; a < thisT.GetChild(0).childCount; a++)
+                            {
+                                if (thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>())
+                                {
+                                    if (!thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado)
+                                    {
+                                        t.gameObject.GetComponent<SacardelMontonScript>().Sacar(thisT.GetChild(0).GetChild(a),true);
+                                        thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i = thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i++;
+                                        thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado = true;
+                                        break;
+                                    }
+                                }
+                                cont++;
+                            }
+                        }
+                        else
+                        {
+                            t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
                         }
                     }
                 }
