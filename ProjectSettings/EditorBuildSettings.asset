@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Baiba/Scenes/GamePlay.unity
     guid: 4a3f7843f6db57a44b62591592a06850
+  - enabled: 0
+    path: Assets/Baiba/Scenes/Pruebas.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

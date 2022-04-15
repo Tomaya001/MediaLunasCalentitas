@@ -29,10 +29,12 @@ public class BotonsScript : MonoBehaviour
     public void AbrirMenu(GameObject menu)
     {
         menu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void CerrarMenu(GameObject menu)
     {
         menu.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
