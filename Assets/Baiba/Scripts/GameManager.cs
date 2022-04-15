@@ -14,6 +14,7 @@ namespace com.baiba.GameManager
         public string NivelJuego;
         private static string nivelJuego;
         public int maxOrdenesPerdidas;
+        public Text txtPuntos;
         private int MaxOrdenesPerdidas;
 
         //Instanciamiento Estatico
@@ -56,6 +57,7 @@ namespace com.baiba.GameManager
             ordenesCorrectas = 0;
             ordenesPerdidas = 0;
             dificultad = 1f;
+            puntos = 0;
             CargarNivel();
         }
         //Fin Instanciamiento Estatico
@@ -68,6 +70,7 @@ namespace com.baiba.GameManager
 
         private void Update()
         {
+            txtPuntos.text = "Puntos\n" + puntos;
             if(ordenesPerdidas >= MaxOrdenesPerdidas)
             {
                 StopAllCoroutines();
@@ -84,6 +87,13 @@ namespace com.baiba.GameManager
         {
             get { return dificultad; }
             set { dificultad = value; }
+        }
+
+        private static int puntos;
+        public static int Puntos
+        {
+            get { return puntos; }
+            set { puntos = value; }
         }
 
         private static string json;

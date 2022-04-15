@@ -353,6 +353,7 @@ public class PickUp : PlayerActions
                     {
                         Limpiar(thisT);
                     }
+                    t.gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 }
 
                 if(thisT.childCount != 0)

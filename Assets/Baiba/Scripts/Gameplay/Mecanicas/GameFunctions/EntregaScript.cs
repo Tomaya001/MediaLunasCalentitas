@@ -41,6 +41,7 @@ public class EntregaScript : GenericObject
                         t.SetParent(null);
                         t.gameObject.SetActive(false);
                         Debug.Log("Correcto");
+                        GameManager.Puntos += (o.ingredientes.Length * 25);
                         GameManager.OrdenesCorrectas = +1;
                         return;
                     }
@@ -106,6 +107,7 @@ public class EntregaScript : GenericObject
                         }
                         Debug.Log(GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key);
                         GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
+                        GameManager.Puntos += (o.ingredientes.Length * 25);
                         Debug.Log("Correcto");
                         return;
                     }
