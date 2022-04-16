@@ -51,7 +51,6 @@ namespace com.baiba.core
             yield return null;
             SceneManager.LoadSceneAsync(scene, load);
         }
-
     }
 
 }

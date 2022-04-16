@@ -1,4 +1,5 @@
 ﻿using com.baiba.core;
+using com.baiba.GameManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class PlayerActions : MonoBehaviour
     public bool enabledCollisonTarget;
     public static bool canActionPlayer;
     public bool canActionPlayerI;
-    public Text botonAccion; // Cambiar por Imagen
+    public Image botonAccion;
+    public List<Sprite> iconos;
 
 
     private void Start()
@@ -51,22 +53,22 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
-        {
-            if (t==null)
-            {
-                EstadoOutline(other, true);
-                t = other.gameObject.transform;
-                Debug.Log(t.gameObject.name);
-                enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
-                canActionPlayer = true;
-            }            
-        }
-    }*/
+    /* private void OnTriggerStay(Collider other)
+     {
+         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
+         {
+             if (t==null)
+             {
+                 EstadoOutline(other, true);
+                 t = other.gameObject.transform;
+                 Debug.Log(t.gameObject.name);
+                 enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
+                 canActionPlayer = true;
+             }            
+         }
+     }*/
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
@@ -84,11 +86,17 @@ public class PlayerActions : MonoBehaviour
 
     public void ReferenciarUI(bool activar)
     {
+        string aux;
         if (activar)
         {
             try
             {
-                botonAccion.text = t.gameObject.GetComponent<GenericObject>().id;
+                aux = t.gameObject.GetComponent<GenericObject>().id;
+                botonAccion.sprite = GameManager.BuscarIcono(aux, iconos);
+                if(botonAccion.sprite == null)
+                    botonAccion.color = new Color(1f, 1f, 1f, 0f);
+                else
+                    botonAccion.color = new Color(1f, 1f, 1f, 1f);
             }
             catch
             {
@@ -99,7 +107,8 @@ public class PlayerActions : MonoBehaviour
         {
             try
             {
-                botonAccion.text = null;
+                botonAccion.color = new Color(1f, 1f, 1f, 0f);
+                botonAccion.sprite = null;
             }
             catch
             {

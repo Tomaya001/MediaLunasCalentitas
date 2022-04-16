@@ -270,7 +270,7 @@ public class PickUp : PlayerActions
                 int cont = 0;
                 if (thisT.childCount == 0)
                 {
-                    t.gameObject.GetComponent<HeladeraScript>().AbrirInventario(thisT);
+                    t.gameObject.GetComponent<HeladeraScript>().AbrirInventario(thisT, false);
                     animator.SetBool("Pick", true);
                 }
                 else
@@ -283,7 +283,7 @@ public class PickUp : PlayerActions
                             {
                                 if (!thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado)
                                 {
-                                    t.gameObject.GetComponent<HeladeraScript>().AbrirInventario(thisT.GetChild(0).GetChild(a));
+                                    t.gameObject.GetComponent<HeladeraScript>().AbrirInventario(thisT.GetChild(0).GetChild(a),true);
                                     thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i = thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i++;
                                     thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado = true;
                                     break;

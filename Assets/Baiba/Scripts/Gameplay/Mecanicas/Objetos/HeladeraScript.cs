@@ -15,6 +15,7 @@ public class HeladeraScript : GenericObject
     public List<GameObject> poolCheesecake;
 
     private Transform point;
+    private bool padre;
 
     private void Awake()
     {
@@ -56,7 +57,10 @@ public class HeladeraScript : GenericObject
                         g.GetComponent<Collider>().enabled = false;
                         g.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                         g.transform.position = point.position;
-                        g.transform.SetParent(point);
+                        if (padre)
+                            g.transform.SetParent(point.parent);
+                        else
+                            g.transform.SetParent(point);
                         g.SetActive(true);
                         break;
                     }                    
@@ -71,7 +75,10 @@ public class HeladeraScript : GenericObject
                         g.GetComponent<Collider>().enabled = false;
                         g.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                         g.transform.position = point.position;
-                        g.transform.SetParent(point);
+                        if (padre)
+                            g.transform.SetParent(point.parent);
+                        else
+                            g.transform.SetParent(point);
                         g.SetActive(true);
                         break;
                     }
@@ -83,9 +90,10 @@ public class HeladeraScript : GenericObject
         panel.SetActive(false);
     }
 
-    public void AbrirInventario(Transform _point)
+    public void AbrirInventario(Transform _point, bool _padre)
     {
         point = _point;
+        padre = _padre;
         joystick.SetActive(false);
         panel.SetActive(true);
         Time.timeScale = 0f;

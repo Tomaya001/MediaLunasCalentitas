@@ -13,7 +13,10 @@ public class BotonsScript : MonoBehaviour
 
     public void CargarEscenaAnterior()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetString("EscenaAnterior"), LoadSceneMode.Single);
+        if (PlayerPrefs.GetString("EscenaAnterior") != null)
+            SceneManager.LoadScene(PlayerPrefs.GetString("EscenaAnterior"), LoadSceneMode.Single);
+        else
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void AbrirURL(string url)

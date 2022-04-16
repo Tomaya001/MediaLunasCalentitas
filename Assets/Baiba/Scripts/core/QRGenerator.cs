@@ -14,7 +14,6 @@ public class QRGenerator : MonoBehaviour
 {
     public BarcodeCam barcode;
     public RawImage qr;
-    private Texture2D qrTextura;
 
     public string url = "El Usuario Tomaya001 consiguio un score de 500 puntos\n" +
         "Se ha ganado un descuento de 25% en un Americano\n" +
@@ -22,7 +21,18 @@ public class QRGenerator : MonoBehaviour
 
     void Start()
     {
-        
+        if (PlayerPrefs.GetString("EscenaAnterior") == "YouLose")
+        {
+            GenerarQR();
+        }
+        else
+        {
+            if(PlayerPrefs.GetString("Descuento") != null)
+            {
+                AbrirQR();
+            }
+        }
+            
     }
 
     public void GenerarQR()

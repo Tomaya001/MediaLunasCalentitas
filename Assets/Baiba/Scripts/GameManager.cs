@@ -16,6 +16,9 @@ namespace com.baiba.GameManager
         public int maxOrdenesPerdidas;
         public Text txtPuntos;
         private int MaxOrdenesPerdidas;
+        public List<Sprite> Iconos;
+        public static List<Sprite> iconos;
+
 
         //Instanciamiento Estatico
         private static GameManager _instance;
@@ -48,7 +51,8 @@ namespace com.baiba.GameManager
             {
                 Destroy(gameObject);
             }
-
+            iconos = new List<Sprite>();
+            iconos.AddRange(Iconos);
             Language lang = Language.instance;
             lang.Init("es");
             nivelJuego = NivelJuego;
@@ -148,20 +152,36 @@ namespace com.baiba.GameManager
 
 
         /* ---- UI CONTROLLER ----- */
-        public static List<Text> UIOrdenes = new List<Text>();
+        public static List<GameObject> UIOrdenes = new List<GameObject>();
         public static List<string> clientesActivos = new List<string>();
         public static void CargarUIPrincipal()
         {
             GameObject aux = GameObject.FindGameObjectWithTag(CONST.TAG.CANVASORDENES);
             for (int i = 0; i < aux.transform.childCount; i++)
             {
-                if(aux.transform.GetChild(i).GetComponent<Text>())
+                if(aux.transform.GetChild(i).GetComponentInChildren<Image>())
                 {
-                    UIOrdenes.Add(aux.transform.GetChild(i).GetComponent<Text>());
+                    for (int j = 0; j < aux.transform.GetChild(i).childCount; j++)
+                    {
+                        aux.transform.GetChild(i).GetChild(j).gameObject.SetActive(false);
+                    }
+                    UIOrdenes.Add(aux.transform.GetChild(i).gameObject);
                     aux.transform.GetChild(i).gameObject.name = "UILibre";
                     aux.transform.GetChild(i).gameObject.SetActive(false);
                 }
             }
+        }
+
+        public static Sprite BuscarIcono(string nombre, List<Sprite> sprites)
+        {
+            foreach (Sprite s in sprites)
+            {
+                if(s.name == nombre)
+                {
+                    return s;
+                }
+            }
+            return null;
         }
 
         public static void MostrarOrden(GameObject cliente)
@@ -180,10 +200,16 @@ namespace com.baiba.GameManager
                                 {
                                     if (g == cliente)
                                     {
-                                        UIOrdenes[i].text = null;
-                                        for (int f = 0; f < listaOrdenes[g].ingredientes.Length; f++)
+                                        for (int j = 0; j < UIOrdenes[i].transform.childCount; j++)
                                         {
-                                            UIOrdenes[i].text += listaOrdenes[g].ingredientes[f].nombre + '\n';
+                                            UIOrdenes[i].transform.GetChild(j).GetComponent<Image>().sprite = null;                                            
+                                            for (int k = 0; k < listaOrdenes[g].ingredientes.Length; k++)
+                                            {
+                                                UIOrdenes[i].transform.GetChild(k).gameObject.SetActive(true);
+                                                UIOrdenes[i].transform.GetChild(k).GetComponent<Image>().sprite =
+                                                    BuscarIcono(listaOrdenes[g].ingredientes[k].nombre, iconos);
+                                            }
+                                            break;
                                         }
                                         UIOrdenes[i].gameObject.name = cliente.name;
                                         clientesActivos.Add(cliente.name);
@@ -202,16 +228,19 @@ namespace com.baiba.GameManager
 
         public static void OcultarOrden(GameObject cliente)
         {
-            foreach (Text t in UIOrdenes)
+            foreach (GameObject s in UIOrdenes)
             {
-                if ((t.gameObject.activeSelf) & (t.gameObject.name.Contains("Cliente")))
+                if ((s.gameObject.activeSelf) & (s.gameObject.name.Contains("Cliente")))
                 {
-                    if(t.gameObject.name == cliente.name)
+                    if(s.gameObject.name == cliente.name)
                     {
-                        t.gameObject.name = "UILibre";
+                        for (int i = 0; i < s.transform.childCount; i++)
+                        {
+                            s.transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                        s.gameObject.name = "UILibre";
                         clientesActivos.Remove(cliente.name);
-                        t.text = null;
-                        t.gameObject.SetActive(false);
+                        s.gameObject.SetActive(false);
                         return;
                     }
                 }
