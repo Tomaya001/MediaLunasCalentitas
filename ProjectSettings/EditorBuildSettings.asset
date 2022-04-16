@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Baiba/Scenes/YouWin.unity
     guid: 1f4cd385cff55ef499bd7fb5cf423543
   - enabled: 1
-    path: Assets/Baiba/Scenes/Customize.unity
+    path: Assets/Baiba/Scenes/Personalizar.unity
     guid: 2946d047dfec2374a933e0b2a7581df1
   - enabled: 1
     path: Assets/Baiba/Scenes/GamePlay.unity

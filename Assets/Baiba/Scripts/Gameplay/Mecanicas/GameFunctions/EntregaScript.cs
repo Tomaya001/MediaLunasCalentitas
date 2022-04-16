@@ -9,17 +9,14 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System;
 using System.Linq;
+using UnityEngine.Audio;
 
 public class EntregaScript : GenericObject
 {
-
-
     private Level level;
-
-    private void Awake()
-    {
-        
-    }
+    public AudioSource source;
+    public AudioClip audioError;
+    public AudioClip audioCorrecto;
 
     private void Start()
     {
@@ -109,6 +106,8 @@ public class EntregaScript : GenericObject
                         GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
                         GameManager.Puntos += (o.ingredientes.Length * 25);
                         Debug.Log("Correcto");
+                        source.clip = audioCorrecto;
+                        source.Play();
                         return;
                     }
                 }
@@ -119,6 +118,8 @@ public class EntregaScript : GenericObject
         if(incorrecto)
         {
             Debug.Log("Orden Erronea");
+            source.clip = audioError;
+            source.Play();
         }        
     }
 

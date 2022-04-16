@@ -169,6 +169,10 @@ public class PickUp : PlayerActions
                     {
                         Debug.Log("Bandeja Llena");
                     }
+                    if (t.gameObject.GetComponent<AudioSource>())
+                    {
+                        t.gameObject.GetComponent<AudioSource>().Play();
+                    }
                 }                              
                 else
                 {
@@ -176,6 +180,10 @@ public class PickUp : PlayerActions
                     t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT,false);
                     t.gameObject.GetComponent<SacarPorcionScript>().activo = false;
                     t.gameObject.GetComponent<Renderer>().enabled = false;
+                    if (t.gameObject.GetComponent<AudioSource>())
+                    {
+                        t.gameObject.GetComponent<AudioSource>().Play();
+                    }
                 }
                     
             }
@@ -216,6 +224,7 @@ public class PickUp : PlayerActions
                             }
                         }
                     }
+                    t.parent.gameObject.GetComponent<AudioSource>().Play();
                 }
                 else
                 {
@@ -293,6 +302,7 @@ public class PickUp : PlayerActions
                         }
                     }
                 }
+                t.gameObject.GetComponent<AudioSource>().Play();
             }
 
             else if (t.gameObject.GetComponent<SacardelMontonScript>())
@@ -305,6 +315,10 @@ public class PickUp : PlayerActions
                         t.gameObject.GetComponent<SacardelMontonScript>().Sacar(thisT,false);
                         thisT.gameObject.GetComponent<PickUp>().i++;
                         animator.SetBool("Pick", true);
+                        if (t.gameObject.GetComponent<AudioSource>())
+                        {
+                            t.gameObject.GetComponent<AudioSource>().Play();
+                        }
                     }
                     else
                     {
@@ -326,6 +340,10 @@ public class PickUp : PlayerActions
                                         t.gameObject.GetComponent<SacardelMontonScript>().Sacar(thisT.GetChild(0).GetChild(a),true);
                                         thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i = thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i++;
                                         thisT.GetChild(0).GetChild(a).gameObject.GetComponent<PuntoRefScript>().ocupado = true;
+                                        if (t.gameObject.GetComponent<AudioSource>())
+                                        {
+                                            t.gameObject.GetComponent<AudioSource>().Play();
+                                        }
                                         break;
                                     }
                                 }
@@ -345,8 +363,10 @@ public class PickUp : PlayerActions
             {
                 if(t.gameObject.GetComponent<GenericObject>().id == "Tacho Basura")
                 {
+                    t.gameObject.GetComponent<AudioSource>().Play();
                     if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                     {
+                       
                         Limpiar(thisT.GetChild(0));
                     }
                     else
@@ -360,6 +380,10 @@ public class PickUp : PlayerActions
                 {
                     if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                     {
+                        if (t.gameObject.GetComponent<AudioSource>())
+                        {
+                            t.gameObject.GetComponent<AudioSource>().Play();
+                        }
                         thisT.GetChild(0).gameObject.GetComponent<Bandeja>().i = Pick(
                             thisT.GetChild(0).gameObject.GetComponent<Bandeja>().points,
                             thisT.GetChild(0),
@@ -368,7 +392,12 @@ public class PickUp : PlayerActions
                 }
                 else
                 {
+                    if (t.gameObject.GetComponent<AudioSource>())
+                    {
+                        t.gameObject.GetComponent<AudioSource>().Play();
+                    }
                     i = Pick(points, thisT, i);
+
                 }
                 
             }

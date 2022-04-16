@@ -53,22 +53,8 @@ public class PlayerActions : MonoBehaviour
         
     }
 
-    /* private void OnTriggerStay(Collider other)
-     {
-         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
-         {
-             if (t==null)
-             {
-                 EstadoOutline(other, true);
-                 t = other.gameObject.transform;
-                 Debug.Log(t.gameObject.name);
-                 enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
-                 canActionPlayer = true;
-             }            
-         }
-     }*/
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
         {
@@ -82,6 +68,21 @@ public class PlayerActions : MonoBehaviour
             }
         }
 
+    }*/
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag(CONST.TAG.OBJETO))
+        {
+            if(t == null)
+            {
+                EstadoOutline(other, true);
+                t = other.gameObject.transform;
+                ReferenciarUI(true);
+                enabledCollisonTarget = t.gameObject.GetComponent<Rigidbody>().detectCollisions;
+                canActionPlayer = true;
+            }
+        }
     }
 
     public void ReferenciarUI(bool activar)

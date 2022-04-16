@@ -11,7 +11,10 @@ public class GameOverScreenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (GameObject.Find("AudioBackground"))
+        {
+            Destroy(GameObject.Find("AudioBackground"));
+        }
     }
 
     // Update is called once per frame
