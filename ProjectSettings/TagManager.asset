@@ -18,6 +18,7 @@ TagManager:
   - Canvas Cliente
   - Cheesecake
   - Brownie
+  - TxtPuntos
   layers:
   - Default
   - TransparentFX

@@ -12,10 +12,12 @@ using System.IO;
 
 public class QRGenerator : MonoBehaviour
 {
-    public BarcodeCam barcode;
-    public RawImage qr;
+    [SerializeField] BarcodeCam barcode;
+    [SerializeField] RawImage qr;
+    [SerializeField] Text mensaje;
 
-    public string url = "El Usuario Tomaya001 consiguio un score de 500 puntos\n" +
+
+    [SerializeField] string url = "El Usuario Tomaya001 consiguio un score de 500 puntos\n" +
         "Se ha ganado un descuento de 25% en un Americano\n" +
         "Si estas lleyendo esta linea, es que el culiado del programador no actualizo el codigo de los QR";
 
@@ -24,15 +26,21 @@ public class QRGenerator : MonoBehaviour
         if (PlayerPrefs.GetString("EscenaAnterior") == "YouLose")
         {
             GenerarQR();
+            AlmacenarQR();
         }
         else
         {
-            if(PlayerPrefs.GetString("Descuento") != null)
+            if (PlayerPrefs.HasKey("Descuento"))
             {
                 AbrirQR();
             }
+            else
+            {
+                qr.gameObject.SetActive(false);
+                mensaje.gameObject.SetActive(true);
+            }
+
         }
-            
     }
 
     public void GenerarQR()
@@ -50,5 +58,9 @@ public class QRGenerator : MonoBehaviour
         url = PlayerPrefs.GetString("Descuento");
         barcode.ChangeLastResult(url);
     }
+
 }
+    
+    
+
 

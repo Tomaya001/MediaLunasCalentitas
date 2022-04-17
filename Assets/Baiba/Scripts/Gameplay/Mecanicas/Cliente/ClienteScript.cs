@@ -10,10 +10,17 @@ namespace com.baiba.cliente
     using com.baiba.GameManager;
     public class ClienteScript: MonoBehaviour
     {
-        public float velocidad;
-        public float tiempoEspera;
-        public Canvas canvas;
-        public Image temporizador;
+        [SerializeField] float velocidad;
+        [SerializeField] float tiempoEspera;
+        [SerializeField] Canvas canvas;
+        [SerializeField] Image temporizador;
+        [SerializeField] Image emoji;
+        [SerializeField] Sprite enojado;
+        [SerializeField] Sprite feliz;
+        [SerializeField] AudioClip enojadoSFX;
+        [SerializeField] AudioClip felizSFX;
+
+        
         public Transform punto1;
         public Transform punto2;
         public Transform pared;
@@ -96,6 +103,10 @@ namespace com.baiba.cliente
                 }
                 else
                 {
+                    emoji.sprite = enojado;
+                    gameObject.GetComponent<AudioSource>().clip = enojadoSFX;
+                    emoji.gameObject.SetActive(true);
+                    gameObject.GetComponent<AudioSource>().Play();
                     ResetUI();
                     estado = false;
                     caminar = true;
@@ -118,6 +129,7 @@ namespace com.baiba.cliente
                     GameManager.OrdenesCorrectas += 1;
                     Debug.Log("Ordenes Correctas: " + GameManager.OrdenesCorrectas);
                 }
+                emoji.gameObject.SetActive(false);
                 this.transform.position = spwan.position;
                 this.gameObject.SetActive(false);
             }
@@ -137,7 +149,10 @@ namespace com.baiba.cliente
         {
             timerOn = false;
             ResetUI();
-            Debug.Log("Soy Feliz");
+            emoji.sprite = feliz;
+            emoji.gameObject.SetActive(true);
+            gameObject.GetComponent<AudioSource>().clip = felizSFX;
+            gameObject.GetComponent<AudioSource>().Play();
             GameManager.OcultarOrden(this.gameObject);
             destino = punto2;
             estado = true;

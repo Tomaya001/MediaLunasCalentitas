@@ -277,15 +277,15 @@ MonoBehaviour:
   m_FillRect: {fileID: 1269056618}
   m_HandleRect: {fileID: 2065533002}
   m_Direction: 0
-  m_MinValue: 0.1
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.1
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 577694042}
-        m_MethodName: ChangeVolumen
+      - m_Target: {fileID: 577694043}
+        m_MethodName: SetVolumen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 577694039}
   - component: {fileID: 577694041}
   - component: {fileID: 577694040}
-  - component: {fileID: 577694042}
+  - component: {fileID: 577694043}
   m_Layer: 5
   m_Name: Volumen Principal
   m_TagString: Untagged
@@ -930,7 +930,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577694038}
   m_CullTransparentMesh: 0
---- !u!114 &577694042
+--- !u!114 &577694043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -942,8 +942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4df0db6870016e46a9f450fb1f3b0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 61672670}
   mixer: {fileID: 24100000, guid: fa80cef90653b9148bdca80a1b29358b, type: 2}
+  tagMixer: VolumenMaster
+  slider: {fileID: 61672670}
 --- !u!1 &662348694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1370,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816788134}
   m_CullTransparentMesh: 0
+--- !u!1 &855541257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855541259}
+  - component: {fileID: 855541258}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &855541258
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855541257}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fa80cef90653b9148bdca80a1b29358b,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 10eb7f3bd50a4fa48aa28bb2947df797, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &855541259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855541257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1036.5273, y: 544.58124, z: 15.8156595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928667397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1530,7 @@ RectTransform:
   - {fileID: 1571246464}
   - {fileID: 1446623333}
   m_Father: {fileID: 1810450514}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1451,15 +1580,15 @@ MonoBehaviour:
   m_FillRect: {fileID: 13286698}
   m_HandleRect: {fileID: 2012251214}
   m_Direction: 0
-  m_MinValue: 0.1
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.1
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1810450517}
-        m_MethodName: ChangeVolumen
+        m_MethodName: SetVolumen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2008,7 +2137,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1810450514}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -2087,8 +2216,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 696284922}
-  - {fileID: 1688442708}
   - {fileID: 928667398}
+  - {fileID: 1688442708}
   m_Father: {fileID: 1054351773}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2146,8 +2275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4df0db6870016e46a9f450fb1f3b0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 928667399}
   mixer: {fileID: 24100000, guid: 01a32824d6db4f84b9bf90531c8d7548, type: 2}
+  tagMixer: VolumenSFX
+  slider: {fileID: 928667399}
 --- !u!1 &1841727710
 GameObject:
   m_ObjectHideFlags: 0

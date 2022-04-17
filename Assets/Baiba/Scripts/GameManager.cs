@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 namespace com.baiba.GameManager
 {
@@ -46,24 +48,44 @@ namespace com.baiba.GameManager
             {
                 _instance = this;
                 DontDestroyOnLoad(this.gameObject);
+                iconos = new List<Sprite>();
+                iconos.AddRange(Iconos);
+                Language lang = Language.instance;
+                lang.Init("es");
+                nivelJuego = NivelJuego;
+                MaxOrdenesPerdidas = maxOrdenesPerdidas;
+                Time.timeScale = 1f;
+                ordenesCorrectas = 0;
+                ordenesPerdidas = 0;
+                dificultad = 1f;
+                puntos = 0;
+                CargarNivel();
             }
             else
             {
                 Destroy(gameObject);
             }
-            iconos = new List<Sprite>();
-            iconos.AddRange(Iconos);
-            Language lang = Language.instance;
-            lang.Init("es");
-            nivelJuego = NivelJuego;
-            MaxOrdenesPerdidas = maxOrdenesPerdidas;
-            Time.timeScale = 1f;
-            ordenesCorrectas = 0;
-            ordenesPerdidas = 0;
-            dificultad = 1f;
-            puntos = 0;
-            CargarNivel();
+            
         }
+        private void OnLevelWasLoaded(int level)
+        {
+            if (level == 6)
+            {
+                txtPuntos = GameObject.FindGameObjectWithTag("TxtPuntos").GetComponent<Text>();
+                dificultad = 1f;
+                ordenesCorrectas = 0;
+                OrdenesPerdidas = 0;
+                puntos = 0;
+                Time.timeScale = 1f;
+                nivel = null;
+                Json = null;
+                CargarNivel();
+                listaOrdenes.Clear();
+                UIOrdenes.Clear();
+                clientesActivos.Clear();
+            }
+        }
+
         //Fin Instanciamiento Estatico
 
         private void Star()
@@ -74,7 +96,8 @@ namespace com.baiba.GameManager
 
         private void Update()
         {
-            txtPuntos.text = "Puntos\n" + puntos;
+            if(txtPuntos != null)
+                txtPuntos.text = "Puntos\n" + puntos;
             if(ordenesPerdidas >= MaxOrdenesPerdidas)
             {
                 StopAllCoroutines();

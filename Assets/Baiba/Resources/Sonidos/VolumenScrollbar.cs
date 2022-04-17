@@ -7,32 +7,26 @@ using UnityEngine.Audio;
 
 public class VolumenScrollbar : MonoBehaviour
 {
-    public Slider slider;
-    public AudioMixer mixer;
+    [SerializeField] AudioMixer mixer;
+    [SerializeField] string tagMixer;
+    [SerializeField] Slider slider;
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey(mixer.name))
+        if(!PlayerPrefs.HasKey(tagMixer))
         {
-            PlayerPrefs.SetFloat(mixer.name, 1f);
-            Load();
+            PlayerPrefs.SetFloat(tagMixer, Mathf.Log10(slider.value) * 20);
         }
-        else
-        {
-            Load();
-        }
+        float aux = PlayerPrefs.GetFloat(tagMixer);
+        slider.value = aux;
+        mixer.SetFloat("MyExposedParam", Mathf.Log10(aux) * 20);
 
     }
 
-    private void Load()
+    public void SetVolumen(float sliderValue)
     {
-        slider.value = PlayerPrefs.GetFloat(mixer.name);
-    }
-
-    public void ChangeVolumen(float sliderValue)
-    {
-        float aux = Mathf.Log10(sliderValue) * 20;
-        mixer.SetFloat("Volumen", aux);
-        PlayerPrefs.SetFloat(mixer.name, aux);
+        mixer.SetFloat("MyExposedParam", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat(tagMixer, sliderValue);
+        Debug.Log(PlayerPrefs.GetFloat(tagMixer));
     }
 }

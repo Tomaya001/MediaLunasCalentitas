@@ -179,7 +179,18 @@ public class PickUp : PlayerActions
                     animator.SetBool("Pick", true);
                     t.gameObject.GetComponent<SacarPorcionScript>().SacarPorcion(thisT,false);
                     t.gameObject.GetComponent<SacarPorcionScript>().activo = false;
-                    t.gameObject.GetComponent<Renderer>().enabled = false;
+                    if(t.gameObject.GetComponent<Renderer>())
+                        t.gameObject.GetComponent<Renderer>().enabled = false;
+                    if (t.gameObject.GetComponentInChildren<Renderer>())
+                    {
+                        for (int i = 0; i < t.childCount; i++)
+                        {
+                            if (t.GetChild(i).GetComponent<Renderer>())
+                            {
+                                t.GetChild(i).GetComponent<Renderer>().enabled = false;
+                            }
+                        }
+                    }
                     if (t.gameObject.GetComponent<AudioSource>())
                     {
                         t.gameObject.GetComponent<AudioSource>().Play();

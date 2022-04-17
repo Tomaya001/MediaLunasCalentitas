@@ -8,14 +8,18 @@ public class CafeteraScripts : GenericObject
 {
     public Image temporizador;
     public float tiempoEspera;
-    public Sprite check;
-    public Sprite circulo;
-    public GameObject joystick;
-    public GameObject panel;
-
     public Transform punto;
     public bool tazaLista;
-    public List<string> ingredientes;
+
+    
+    [SerializeField] Sprite check;
+    [SerializeField] Sprite circulo;
+    [SerializeField] GameObject joystick;
+    [SerializeField] GameObject panel;
+    [SerializeField] List<string> ingredientes;
+    [SerializeField] List<Material> materialesCafe;
+
+
 
 
     private Transform point;
@@ -52,15 +56,23 @@ public class CafeteraScripts : GenericObject
                 {
                     case "Expresso":
                         taza.GetComponent<GenericObject>().id = "Expresso";
+                        taza.GetChild(0).gameObject.GetComponent<Renderer>().material =
+                            BuscarMaterial("Expresso", materialesCafe);
                         break;
                     case "Latte":
                         taza.GetComponent<GenericObject>().id = "Latte";
+                        taza.GetChild(0).gameObject.GetComponent<Renderer>().material =
+                            BuscarMaterial("Latte", materialesCafe);
                         break;
                     case "Americano":
                         taza.GetComponent<GenericObject>().id = "Americano";
+                        taza.GetChild(0).gameObject.GetComponent<Renderer>().material =
+                            BuscarMaterial("Americano", materialesCafe);
                         break;
                     case "Moca":
                         taza.GetComponent<GenericObject>().id = "Moca";
+                        taza.GetChild(0).gameObject.GetComponent<Renderer>().material =
+                            BuscarMaterial("Moca", materialesCafe);
                         break;
                 }
                 StartCoroutine(PrepararCafe(tiempoEspera, taza));
@@ -69,6 +81,18 @@ public class CafeteraScripts : GenericObject
                 panel.SetActive(false);
             }            
         }        
+    }
+
+    private Material BuscarMaterial(string cafe, List<Material> materiales)
+    {
+        for (int i = 0; i < materiales.Count; i++)
+        {
+            if(materiales[i].name == cafe)
+            {
+                return materiales[i];
+            }
+        }
+        return null;
     }
 
     public bool SacarTaza(Transform player)

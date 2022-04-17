@@ -15,6 +15,7 @@ public class GameOverScreenScript : MonoBehaviour
         {
             Destroy(GameObject.Find("AudioBackground"));
         }
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

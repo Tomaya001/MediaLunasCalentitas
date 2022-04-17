@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class NoDestruirenStar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static NoDestruirenStar instance = null;
+    void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
     }
 }

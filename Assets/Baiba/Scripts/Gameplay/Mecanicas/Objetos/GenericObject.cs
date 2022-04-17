@@ -33,22 +33,32 @@ public class GenericObject : MonoBehaviour
 
     private void Update()
     {
-        if (this.gameObject.GetComponent<Renderer>())
+        if (!activo)
         {
-            if (!activo)
+            if(tiempo > 0f)
             {
-                if (tiempo > 0f)
-                {
-                    tiempo -= Time.deltaTime;
-                }
-                else
-                {
-                    this.gameObject.GetComponent<Renderer>().enabled = true;
-                    activo = true;
-                    tiempo = 3f;
-                }
+                tiempo -= Time.deltaTime;
             }
-        }        
+            else
+            {
+                if (gameObject.GetComponent<Renderer>())
+                {
+                    gameObject.GetComponent<Renderer>().enabled = true;
+                }
+                else if(gameObject.GetComponentInChildren<Renderer>())
+                {
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        if (transform.GetChild(i).GetComponent<Renderer>())
+                        {
+                            transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+                        }
+                    }
+                }
+                activo = true;
+                tiempo = 3f;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
