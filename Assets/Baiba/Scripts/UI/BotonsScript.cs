@@ -40,4 +40,23 @@ public class BotonsScript : MonoBehaviour
         menu.SetActive(false);
         Time.timeScale = 1f;
     }
+
+    public void BotonJugar()
+    {
+        if (PlayerPrefs.HasKey("Tutorial"))
+        {
+            if(PlayerPrefs.GetInt("Tutorial") == 0)
+            {
+                SceneManager.LoadScene("Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene("GamePlay");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+    }
 }

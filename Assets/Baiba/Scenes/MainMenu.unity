@@ -1840,6 +1840,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631119168}
     m_Modifications:
+    - target: {fileID: 8002237490801794474, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_Text
+      value: JUGAR
+      objectReference: {fileID: 0}
     - target: {fileID: 8002237491161808362, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1978,7 +1983,7 @@ PrefabInstance:
     - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
         type: 3}
@@ -1993,7 +1998,7 @@ PrefabInstance:
     - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CargarEscena
+      value: BotonJugar
       objectReference: {fileID: 0}
     - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
         type: 3}
