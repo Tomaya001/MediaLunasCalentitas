@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using com.baiba.GameManager;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -17,9 +18,9 @@ public class QRGenerator : MonoBehaviour
     [SerializeField] Text mensaje;
 
 
-    [SerializeField] string url = "El Usuario Tomaya001 consiguio un score de 500 puntos\n" +
-        "Se ha ganado un descuento de 25% en un Americano\n" +
-        "Si estas lleyendo esta linea, es que el culiado del programador no actualizo el codigo de los QR";
+    [SerializeField]
+    string url = "El Usuario " + ConnectionManager.user + " consiguio un score de" + GameManager.Puntos + " puntos\n" +
+        "Se ha ganado un descuento de 25% en un Americano\n";
 
     void Start()
     {
