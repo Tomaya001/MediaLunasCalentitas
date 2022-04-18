@@ -78,6 +78,7 @@ namespace com.baiba.cliente
                         PedirOrden();
                     }
                     caminar = false;
+                    animator.SetBool("Walk", false);
                 }
             }
 
