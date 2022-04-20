@@ -18,6 +18,7 @@ public class CafeteraScripts : GenericObject
     [SerializeField] GameObject panel;
     [SerializeField] List<string> ingredientes;
     [SerializeField] List<Material> materialesCafe;
+    [SerializeField] AudioSource audio;
 
 
 
@@ -43,6 +44,7 @@ public class CafeteraScripts : GenericObject
         point = _point;
         joystick.SetActive(false);
         panel.SetActive(true);
+        audio.Play();
         Time.timeScale = 0f;
     }
 
@@ -107,6 +109,7 @@ public class CafeteraScripts : GenericObject
                 ok = true;
                 temporizador.sprite = circulo;
                 temporizador.gameObject.SetActive(false);
+                audio.Stop();
                 tazaLista = false;
             }
             else
@@ -135,6 +138,7 @@ public class CafeteraScripts : GenericObject
                 ok = true;
                 temporizador.sprite = circulo;
                 temporizador.gameObject.SetActive(false);
+                audio.Stop();
                 tazaLista = false;
             }
             else

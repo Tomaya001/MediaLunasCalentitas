@@ -87,6 +87,7 @@ public class SacardelMontonScript : GenericObject
             if (!objects[i].activeSelf)
             {
                 objects[i].transform.position = possBases[i];
+                objects[i].transform.SetParent(this.transform);
                 objects[i].SetActive(true);
             }            
         }

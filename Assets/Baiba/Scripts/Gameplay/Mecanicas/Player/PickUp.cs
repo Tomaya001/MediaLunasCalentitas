@@ -134,7 +134,7 @@ public class PickUp : PlayerActions
         
     }
 
-    private void Descopupar(Transform p)
+    public void Descopupar(Transform p)
     {
         for (int j = 0; j < p.childCount; j++)
         {
@@ -163,7 +163,8 @@ public class PickUp : PlayerActions
                         thisT.GetChild(0).GetComponent<Bandeja>().points[thisT.GetChild(0).GetComponent<Bandeja>().i].gameObject.GetComponent<PuntoRefScript>().ocupado = true;
                         thisT.GetChild(0).GetComponent<Bandeja>().i++;
                         t.gameObject.GetComponent<SacarPorcionScript>().activo = false;
-                        t.gameObject.GetComponent<Renderer>().enabled = false;
+                        if(t.gameObject.GetComponent<Renderer>())
+                            t.gameObject.GetComponent<Renderer>().enabled = false;
                     }                        
                     else
                     {
@@ -235,7 +236,6 @@ public class PickUp : PlayerActions
                             }
                         }
                     }
-                    t.parent.gameObject.GetComponent<AudioSource>().Play();
                 }
                 else
                 {

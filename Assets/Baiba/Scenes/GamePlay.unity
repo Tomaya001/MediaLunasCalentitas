@@ -6210,8 +6210,8 @@ Camera:
   m_GameObject: {fileID: 434871086}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -19878,17 +19878,17 @@ PrefabInstance:
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[0]
-      value: Expresso
+      value: Americano
       objectReference: {fileID: 0}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[1]
-      value: Latte
+      value: Expresso
       objectReference: {fileID: 0}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[2]
-      value: Americano
+      value: Latte
       objectReference: {fileID: 0}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
@@ -19920,6 +19920,11 @@ PrefabInstance:
       propertyPath: materialesCafe.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: e8060f4817723314690de66824be17b7, type: 2}
+    - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
+        type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 1542345679}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.size
@@ -19959,17 +19964,17 @@ PrefabInstance:
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[0]
-      value: Expresso
+      value: Americano
       objectReference: {fileID: 0}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[1]
-      value: Latte
+      value: Expresso
       objectReference: {fileID: 0}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.data[2]
-      value: Americano
+      value: Latte
       objectReference: {fileID: 0}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
@@ -20001,6 +20006,11 @@ PrefabInstance:
       propertyPath: materialesCafe.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: e8060f4817723314690de66824be17b7, type: 2}
+    - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
+        type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 1542345679}
     - target: {fileID: 9045929135889677877, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20008,6 +20018,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0dc84ca802fb364684d9be360d3a99d, type: 3}
+--- !u!82 &1542345679 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 231106407442164041, guid: e0dc84ca802fb364684d9be360d3a99d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542345678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1548919406
 PrefabInstance:
   m_ObjectHideFlags: 0
