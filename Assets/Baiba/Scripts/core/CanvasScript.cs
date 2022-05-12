@@ -19,13 +19,14 @@ namespace com.baiba.UI
             {
                 canvasCliente = this.gameObject.GetComponent<Canvas>();
             }
+
+            canvasCliente.transform.rotation = Quaternion.Euler(new Vector3(140, 180f, 180f));
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (canvasCliente != null)
-                canvasCliente.transform.LookAt(Camera.main.transform);
+            
         }
     }
 }

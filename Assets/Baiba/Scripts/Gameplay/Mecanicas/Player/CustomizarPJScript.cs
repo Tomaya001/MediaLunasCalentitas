@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CustomizarPJScript : MonoBehaviour
 {
-    public GameObject[] piel;
-    public Color[] colors;
+    [SerializeField] GameObject[] piel;
+    [SerializeField] Color[] colors;
 
     int i;
     // Start is called before the first frame update
@@ -50,6 +50,7 @@ public class CustomizarPJScript : MonoBehaviour
         {
             g.gameObject.GetComponent<Renderer>().material.color = colors[i];
         }
+        AplicarSkin();
     }
 
     public void AplicarSkin()

@@ -2516,7 +2516,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1359364530}
+      objectReference: {fileID: 0}
     - target: {fileID: 47949504179833227, guid: d07c2db043a16ec449f2e3dd973d8aff,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2616,7 +2616,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1359364530}
+      objectReference: {fileID: 0}
     - target: {fileID: 2302389073980123403, guid: d07c2db043a16ec449f2e3dd973d8aff,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2721,7 +2721,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1359364530}
+      objectReference: {fileID: 0}
     - target: {fileID: 5094344678338726107, guid: d07c2db043a16ec449f2e3dd973d8aff,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2801,7 +2801,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1359364530}
+      objectReference: {fileID: 0}
     - target: {fileID: 5837632064177954499, guid: d07c2db043a16ec449f2e3dd973d8aff,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -15018,6 +15018,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 386207791}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &1013130229 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4086322455849756079, guid: e0dc84ca802fb364684d9be360d3a99d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542345678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1014244536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d2f8fa4315d26e048bf84d705620dee3,
@@ -18050,18 +18056,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1359364530 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1542345678}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6a648e6d3f2df4cbb9db45dbf49def, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1359532897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19839,6 +19833,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6339898974021610517, guid: e0dc84ca802fb364684d9be360d3a99d,
+        type: 3}
+      propertyPath: canvasCliente
+      value: 
+      objectReference: {fileID: 1013130229}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: ingredientes.Array.size
@@ -19859,7 +19858,7 @@ PrefabInstance:
         type: 3}
       propertyPath: punto
       value: 
-      objectReference: {fileID: 1929104048}
+      objectReference: {fileID: 0}
     - target: {fileID: 8090769282779820349, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
       propertyPath: circulo
@@ -19939,7 +19938,7 @@ PrefabInstance:
         type: 3}
       propertyPath: check
       value: 
-      objectReference: {fileID: 21300000, guid: bfd7f2d02bcb369458540a3a6e2cea7f,
+      objectReference: {fileID: 21300000, guid: 9ca7979700554174ab1ee239899e44b6,
         type: 3}
     - target: {fileID: 8290214374918363218, guid: e0dc84ca802fb364684d9be360d3a99d,
         type: 3}
@@ -23945,12 +23944,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2df7a0fee4ec6c4ba61de42809c68ed,
     type: 3}
   m_PrefabInstance: {fileID: 2012786462}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1929104048 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4532028109793171585, guid: e0dc84ca802fb364684d9be360d3a99d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1542345678}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1929637652 stripped
 GameObject:
