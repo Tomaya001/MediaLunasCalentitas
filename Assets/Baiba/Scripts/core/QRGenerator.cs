@@ -19,7 +19,7 @@ public class QRGenerator : MonoBehaviour
 
 
     [SerializeField]
-    string url = "El Usuario " + ConnectionManager.user + " consiguio un score de" + GameManager.Puntos + " puntos\n" +
+    string url = "El Usuario " + "Agregar Usuario" + " consiguio un score de" + GameManager.Puntos + " puntos\n" +
         "Se ha ganado un descuento de 25% en un Americano\n";
 
     void Start()
