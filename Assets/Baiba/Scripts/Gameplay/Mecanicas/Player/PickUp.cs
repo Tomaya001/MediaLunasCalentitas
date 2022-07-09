@@ -229,7 +229,7 @@ public class PickUp : PlayerActions
                                     {
                                         t.gameObject.GetComponent<CafeteraScripts>().AbrirInventario(thisT.GetChild(0), thisT.GetChild(0).GetChild(a));
                                         thisT.GetChild(0).gameObject.GetComponent<Bandeja>().points[cont].gameObject.GetComponent<PuntoRefScript>().ocupado = false;
-                                        animator.SetBool("Pick", false);
+                                        //animator.SetBool("Pick", false);
                                         cont++;
                                     }                                        
                                 }
@@ -366,6 +366,21 @@ public class PickUp : PlayerActions
                             t.gameObject.GetComponent<SacardelMontonScript>().Rellenar();
                         }
                     }
+                }
+            }
+
+            else if (t.gameObject.GetComponent<PuntodeApoyo>())
+            {
+                if (thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
+                {
+                    thisT.GetChild(0).transform.position = t.position;
+                    thisT.GetChild(0).transform.rotation = t.rotation;
+                    thisT.GetChild(0).SetParent(t);
+                }
+
+                if(t.childCount > 0)
+                {
+                    Pick(points, t.GetChild(0), i);
                 }
             }
 
