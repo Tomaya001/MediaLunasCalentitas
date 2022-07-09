@@ -20,6 +20,7 @@ namespace com.baiba.GameManager
         private int MaxOrdenesPerdidas;
         public List<Sprite> Iconos;
         public static List<Sprite> iconos;
+        public int indexOrden;
 
 
         //Instanciamiento Estatico
@@ -59,6 +60,7 @@ namespace com.baiba.GameManager
                 ordenesPerdidas = 0;
                 dificultad = 1f;
                 puntos = 0;
+                indexOrden = 0;
                 CargarNivel();
             }
             else

@@ -275,7 +275,7 @@ public class PickUp : PlayerActions
             {
                 if(!thisT.GetChild(0).gameObject.GetComponent<Bandeja>())
                 {
-                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT);
+                    t.gameObject.GetComponent<EntregaScript>().ComprobarOrden(thisT.GetChild(0));
                 }
                 else
                 {

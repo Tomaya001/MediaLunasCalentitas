@@ -1,47 +1,18 @@
 {
   "ordenes":[
-    
-    {
-      "tiempo":60.0,
-      "ingredientes":[
-        {
-          "nombre":"Expresso",
-          "tiempo":5.0
-        }
-      ]
-    },
-    {
-      "tiempo":60.0,
-      "ingredientes":[
-        {
-          "nombre":"Expresso",
-          "tiempo":5.0
-        }
-      ]
-    },
-    {
-      "tiempo":60.0,
-      "ingredientes":[
-        {
-          "nombre":"Expresso",
-          "tiempo":5.0
-        }
-      ]
-    },
-    {
-      "tiempo":60.0,
-      "ingredientes":[
-        {
-          "nombre":"Expresso",
-          "tiempo":5.0
-        }
-      ]
-    },
     {
       "tiempo":60.0,
       "ingredientes":[
         {
           "nombre":"Americano",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Alfajor Blanco",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Alfajor Negro",
           "tiempo":1.0
         }
       ]
@@ -50,6 +21,10 @@
     {
       "tiempo":60.0,
       "ingredientes":[
+        {
+          "nombre":"Muffin",
+          "tiempo":1.0
+        },
         {
           "nombre":"Expresso",
           "tiempo":5.0
@@ -67,6 +42,10 @@
         {
           "nombre":"Roll de Canela",
           "tiempo":1.0
+        },
+        {
+          "nombre":"Brownie",
+          "tiempo":1.0
         }
         
       ]
@@ -95,7 +74,15 @@
           "tiempo":5.0
         },
         {
+          "nombre":"Expresso",
+          "tiempo":5.0
+        },
+        {
           "nombre":"Cheesecake",
+          "tiempo":1.0
+        },
+        {
+          "nombre":"Brownie",
           "tiempo":1.0
         }
         
@@ -106,8 +93,16 @@
       "tiempo":60.0,
       "ingredientes":[
         {
-          "nombre":"Expresso",
+          "nombre":"Latte",
           "tiempo":5.0
+        },
+        {
+          "nombre":"Alfajor Blanco",
+          "tiempo":5.0
+        },
+        {
+          "nombre":"Alfajor Negro",
+          "tiempo":1.0
         },
         {
           "nombre":"Brownie",
@@ -125,7 +120,7 @@
           "tiempo":5.0
         },
         {
-          "nombre":"Alfajor Blanco",
+          "nombre":"Latte",
           "tiempo":5.0
         },
         {
@@ -149,6 +144,10 @@
         },
         {
           "nombre":"Alfajor Blanco",
+          "tiempo":5.0
+        },
+        {
+          "nombre":"Alfajor Negro",
           "tiempo":5.0
         }
         
@@ -192,8 +191,7 @@
         {
           "nombre":"Muffin",
           "tiempo":5.0
-        }
-        
+        }        
       ]
     },
 
