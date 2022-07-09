@@ -46,12 +46,13 @@ namespace com.baiba.cliente
 
         private void OnEnable()
         {
-            orden = GameManager.Nivel.ordenes[Random.Range(0, GameManager.Nivel.ordenes.Length)];
+            orden = GameManager.Nivel.ordenes[GameManager.instance.indexOrden];
             if (GameManager.ListaOrdenes.ContainsKey(this.gameObject))
             {
                 GameManager.ListaOrdenes.Remove(this.gameObject);
             }
             GameManager.ListaOrdenes.Add(this.gameObject, orden);
+            GameManager.instance.indexOrden++;
             tiempoEspera = orden.tiempo * GameManager.Dificultad;
             timerOn = false;
             tiempo = tiempoEspera;

@@ -27,7 +27,7 @@ public class EntregaScript : GenericObject
     public void ComprobarOrden(Transform t)
     {
         bool correcto = true;
-        if(t.childCount == 0)
+        if(t.childCount == 1)
         {
             foreach (Orden o in GameManager.ListaOrdenes.Values)
             {
@@ -35,11 +35,16 @@ public class EntregaScript : GenericObject
                 {
                     if (t.gameObject.GetComponent<GenericObject>().id == o.ingredientes[0].nombre)
                     {
+                        t.parent.GetComponentInParent<Animator>().SetBool("Pick", false);
                         t.SetParent(null);
                         t.gameObject.SetActive(false);
-                        Debug.Log("Correcto");
+                        Debug.Log(GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key);
                         GameManager.Puntos += (o.ingredientes.Length * 25);
-                        GameManager.OrdenesCorrectas = +1;
+                        Debug.Log("Correcto");                        
+                        GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
+                        GameManager.Puntos += (o.ingredientes.Length * 25);
+                        source.clip = audioCorrecto;
+                        source.Play();
                         return;
                     }
                 }
@@ -49,7 +54,7 @@ public class EntregaScript : GenericObject
                 }                    
             }
         }
-        else if(t.childCount > 0)
+        else if(t.childCount > 1)
         {
             List<string> stringIds = new List<string>();
 
@@ -61,6 +66,7 @@ public class EntregaScript : GenericObject
 
             foreach (Orden o in GameManager.ListaOrdenes.Values)
             {
+                correcto = true;
                 for (int i = 0; i < o.ingredientes.Length; i++)
                 {
                     if (!stringIds.Contains(o.ingredientes[i].nombre))
@@ -68,24 +74,6 @@ public class EntregaScript : GenericObject
                         correcto = false;
                     }
                 }
-
-
-                /*
-                foreach (Orden o in GameManager.ListaOrdenes.Values)
-                {
-
-                        while (i < o.ingredientes.Length)
-                        {
-                            if (aux[i] == o.ingredientes[i].nombre)
-                            {
-                                i++;
-                            }
-                            else
-                            {
-                                correcto = false;
-                                break;
-                            }
-                        }*/
 
                 if (correcto)
                 {
@@ -109,14 +97,15 @@ public class EntregaScript : GenericObject
                         t.gameObject.GetComponent<Rigidbody>().detectCollisions = true;
                         t.gameObject.GetComponent<Rigidbody>().useGravity = true;
                         t.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        t.gameObject.GetComponent<Bandeja>().Descopupar(t);
                     }
+                    else
                     Debug.Log(GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key);
                     GameManager.ListaOrdenes.Where(p => p.Value == o).FirstOrDefault().Key.gameObject.GetComponent<ClienteScript>().OrdenCompletada();
                     GameManager.Puntos += (o.ingredientes.Length * 25);
                     Debug.Log("Correcto");
                     source.clip = audioCorrecto;
                     source.Play();
-                    t.gameObject.GetComponent<Bandeja>().Descopupar(t);
                     return;
                 } 
             }
