@@ -1825,6 +1825,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1054351774}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AbrirURL
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002237491161808367, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: https://drive.google.com/file/d/1cDH0gUqsCZnpgw3wRFgRqwYwHNMOGirx/view?usp=sharing
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac5f9fd43bb4e94c9d67e45b77e3692, type: 3}
 --- !u!224 &1232361206 stripped
